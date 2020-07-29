@@ -1,7 +1,6 @@
 .header-bg {
     background-color: hsl(18, 92%, 95%);
 }
-
 .dropdown-menu {
     min-width: 7rem;
     padding: 0;
@@ -11,6 +10,8 @@
     border-radius: 0.1rem;
 }
 
+/* Sign in button and its drop down items */
+
 .sign-in-button {
     background-color: hsl(163, 38%, 62%);
     border: none;
@@ -18,9 +19,18 @@
     color:rgba(0,0,0,0.15);
 }
 
-.container {
-    max-width: 1200px;
+.dropdown-divider {
+    margin: 0.2rem 0;
 }
+
+.dropdown-item {
+    padding-top: 0.1rem;
+    padding-bottom: 0.2rem;
+}
+
+/* .container {
+    max-width: 1200px;
+} */
 
 .fa-bars{
     color: #888;
@@ -44,6 +54,10 @@
     margin-left: -9px;
 }
 
+.form-inline {
+    flex-flow: row nowrap;
+}
+
 .font-size {
     font-size: 1.3rem;
 }
@@ -61,11 +75,11 @@
     padding-top: 1.5rem; 
     }
 
-*,
+/* *,
 *::before,
 *::after {
 box-sizing: initial;
-}
+} */
 
 .margin-left {
     margin-left: 0;
@@ -73,14 +87,10 @@ box-sizing: initial;
 
 .container-edited {
     float: right;
-    max-width: 500px;
-    margin-right: 2rem;
+    max-width: 100%;
     padding-top: 1.5rem;
 }
 
-.no-wrap {
-    flex-flow: row wrap;
-}
 
 
 @media only screen and (min-width: 992px) {
@@ -115,6 +125,12 @@ Removes white gap between slides - chagnge to base color of slide images
     display: block;
     width:100%;
   }
+
+  /* .box {
+      box-sizing: border-box;
+  } */
+
+
 
 
 

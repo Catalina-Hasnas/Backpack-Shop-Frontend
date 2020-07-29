@@ -60,7 +60,29 @@
 						<div class="container-edited">
 							<div class="d-flex justify-content-center align-content-center">
 								<div class="col-auto">
-									<button class="sign-in-button"> Sign in </button>
+									<a href="#" data-toggle="dropdown" data-offset="20,10">
+										<button class="sign-in-button"> Sign in </button>
+									</a>
+									
+									<div class="dropdown-menu">
+										<form class="px-4 py-3">
+											<div class="form-group">
+												<label>Email address</label>
+												<input type="email" class="form-control"
+													placeholder="email@example.com">
+											</div>
+											<div class="form-group">
+												<label>Password</label>
+												<input type="password" class="form-control" placeholder="Password">
+											</div>
+											<button type="submit" class="btn btn-primary">Sign in</button>
+										</form>
+										<hr class="dropdown-divider">
+										<a class="dropdown-item" href="pages/registration.html">Have account? Sign
+											up</a>
+										<a class="dropdown-item" href="#">Forgot password?</a>
+									</div> <!--  dropdown-menu .// -->
+
 								</div> 
 								
 								<div class="col-auto">
@@ -129,7 +151,7 @@
 								</button>
 								</div>
 						</form> 
-
+					
 				</div>	
 		</nav>	
 	</header>
@@ -144,7 +166,7 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="carousel-item active">
 					<a href="#">
-						 <picture>
+						<picture>
 						  <source srcset="images/banners/2000x500.png" media="(min-width: 1400px)">
 						  <source srcset="images/banners/1400x500.png" media="(min-width: 769px)">
 						   <source srcset="images/banners/800x500.png" media="(min-width: 577px)">
@@ -163,23 +185,40 @@
 				<!-- /.carousel-item -->
 				<div class="carousel-item">
 					<a href="#">
-						 <picture>
+						<picture>
 						  <source srcset="images/banners/second-slide/2000x500.png" media="(min-width: 1400px)">
 						  <source srcset="images/banners/second-slide/1400x500.png" media="(min-width: 769px)">
 						   <source srcset="images/banners/second-slide/800x500.png" media="(min-width: 577px)">
 						  <img srcset="images/banners/second-slide/600x500.png" alt="responsive image" class="d-block img-fluid">
 						</picture>
+
+						<div class="carousel-caption">
+							<div>
+								<h2 class="text-white">Rucsacuri din țesături naturale</h2>
+								<p>Din dragoste pentru oameni și natură</p>
+								<span class="btn btn-md btn btn-primary">Vezi modelele</span>
+							</div>
+						</div>
+
 					</a>
 				</div>
 				<!-- /.carousel-item -->
 				<div class="carousel-item">
 					<a href="#">
-						 <picture>
+						<picture>
 						  <source srcset="images/banners/third-slide/2000x500.png" media="(min-width: 1400px)">
 						  <source srcset="images/banners/third-slide/1400x500.png" media="(min-width: 769px)">
 						   <source srcset="images/banners/third-slide/800x500.png" media="(min-width: 577px)">
 						  <img srcset="images/banners/third-slide/600x500.png" alt="responsive image" class="d-block img-fluid">
 						</picture>
+
+						<div class="carousel-caption">
+							<div>
+								<h2 class="text-white">Rucsacuri din țesături naturale</h2>
+								<p>Din dragoste pentru oameni și natură</p>
+								<span class="btn btn-md btn btn-primary">Vezi modelele</span>
+							</div>
+						</div>
 					</a>
 				</div>
 				<!-- /.carousel-item -->
@@ -195,6 +234,57 @@
 			</a>
 		</div> 
 		<!-- ========================= SECTION INTRO END// ========================= -->
+	
+	<section class="section-content bg padding-y-sm">
+		<div class="container">
+			<div class="row-sm">
+				<div class="col-md-3 col-sm-6">
+					<figure class="card card-product">
+						<div class="img-wrap"> <img src="images/items/1.jpg"></div>
+						<figcaption class="info-wrap">
+							<a href="#" class="title">Good item name</a>
+							<div class="price-wrap">
+								<span class="price-new">$1280</span>
+								<del class="price-old">$1980</del>
+							</div> <!-- price-wrap.// -->
+						</figcaption>
+					</figure> <!-- card // -->
+				</div> <!-- col // -->
+				<div class="col-md-3 col-sm-6">
+					<figure class="card card-product">
+						<div class="img-wrap"> <img src="images/items/2.jpg"></div>
+						<figcaption class="info-wrap">
+							<a href="#" class="title">The name of product</a>
+							<div class="price-wrap">
+								<span class="price-new">$280</span>
+							</div> <!-- price-wrap.// -->
+						</figcaption>
+					</figure> <!-- card // -->
+				</div> <!-- col // -->
+				<div class="col-md-3 col-sm-6">
+					<figure class="card card-product">
+						<div class="img-wrap"> <img src="images/items/3.jpg"></div>
+						<figcaption class="info-wrap">
+							<a href="#" class="title">Good item name</a>
+							<div class="price-wrap">
+								<span class="price-new">$280</span>
+							</div> <!-- price-wrap.// -->
+						</figcaption>
+					</figure> <!-- card // -->
+				</div> <!-- col // -->
+				<div class="col-md-3 col-sm-6">
+					<figure class="card card-product">
+						<div class="img-wrap"> <img src="images/items/4.jpg"></div>
+						<figcaption class="info-wrap">
+							<a href="#" class="title">Good item name</a>
+							<div class="price-wrap">
+								<span class="price-new">$280</span>
+							</div> <!-- price-wrap.// -->
+						</figcaption>
+					</figure> <!-- card // -->
+				</div> <!-- col // -->
+		</div>
+	</section>
 
 	<!-- ========================= FOOTER ========================= -->
 	<footer class="section-footer bg-dark white">
