@@ -126,7 +126,17 @@ Removes white gap between slides - chagnge to base color of slide images
     color: hsl(163, 38%, 62%);
   }
 
+  .card-product .info-wrap {
+    border-top: 0;
+  }
 
+  .card {
+    border-radius: 0.1rem;
+  }
+
+  .width-of-products {
+    max-width: 800px;
+  }
 
 
   
