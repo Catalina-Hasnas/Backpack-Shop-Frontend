@@ -1,0 +1,125 @@
+.header-bg {
+    background-color: hsl(18, 92%, 95%);
+}
+
+.dropdown-menu {
+    min-width: 7rem;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0.1rem;
+}
+
+.sign-in-button {
+    background-color: hsl(163, 38%, 62%);
+    border: none;
+    text-decoration: none;
+    color:rgba(0,0,0,0.15);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.fa-bars{
+    color: #888;
+}
+
+.form-control {
+    height: calc(1em + 1rem + 2px);
+    padding: 0.1rem 0.1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.1rem;
+}
+
+.btn-edit {
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.1rem;
+}
+
+.input-group-append {
+    margin-left: -9px;
+}
+
+.font-size {
+    font-size: 1.3rem;
+}
+
+.navbar-toggler {
+    padding: 1rem 0.75rem;
+}
+
+.no-col-padding {
+    padding-right:10px;
+    padding-left:10px;
+}
+
+.padding-top {
+    padding-top: 1.5rem; 
+    }
+
+*,
+*::before,
+*::after {
+box-sizing: initial;
+}
+
+.margin-left {
+    margin-left: 0;
+}
+
+.container-edited {
+    float: right;
+    max-width: 500px;
+    margin-right: 2rem;
+    padding-top: 1.5rem;
+}
+
+.no-wrap {
+    flex-flow: row wrap;
+}
+
+
+@media only screen and (min-width: 992px) {
+
+    .margin-to-left {
+        margin-left: 28rem;
+    }
+
+    .padding-left {
+        margin-left: 5rem;
+    }
+}
+
+/*
+Removes white gap between slides - chagnge to base color of slide images
+*/
+.carousel {
+    background: hsl(18, 92%, 95%);
+  }
+  
+  /*
+  Forces image to be 100% width and not max width of 100%
+  */
+  .carousel-item .img-fluid {
+    width:100%;
+  }
+  
+  /* 
+  anchors are inline so you need ot make them block to go full width
+  */
+  .carousel-item a {
+    display: block;
+    width:100%;
+  }
+
+
+
+  
+
+
+
+
