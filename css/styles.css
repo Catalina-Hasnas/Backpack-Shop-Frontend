@@ -1,6 +1,7 @@
 .header-bg {
     background-color: hsl(18, 92%, 95%);
 }
+
 .dropdown-menu {
     min-width: 7rem;
     padding: 0;
@@ -27,10 +28,6 @@
     padding-top: 0.1rem;
     padding-bottom: 0.2rem;
 }
-
-/* .container {
-    max-width: 1200px;
-} */
 
 .fa-bars{
     color: #888;
@@ -74,12 +71,6 @@
 .padding-top {
     padding-top: 1.5rem; 
     }
-
-/* *,
-*::before,
-*::after {
-box-sizing: initial;
-} */
 
 .margin-left {
     margin-left: 0;
@@ -126,10 +117,14 @@ Removes white gap between slides - chagnge to base color of slide images
     width:100%;
   }
 
-  /* .box {
-      box-sizing: border-box;
-  } */
+  .top-box
+  {
+    box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4);
+  }
 
+  .green {
+    color: hsl(163, 38%, 62%);
+  }
 
 
 
