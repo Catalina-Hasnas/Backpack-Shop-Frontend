@@ -176,6 +176,12 @@ Removes white gap between slides - chagnge to base color of slide images
     cursor: pointer;
   }
 
+  .custom-control {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+  }
+
 
   
 
