@@ -182,7 +182,9 @@ Removes white gap between slides - chagnge to base color of slide images
     padding-top: 0.5rem;
   }
 
-  
+  .title {
+    font-weight: bold;
+  }
 
   
 
