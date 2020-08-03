@@ -2,6 +2,17 @@
     background-color: hsl(18, 92%, 95%);
 }
 
+.max-width {
+  max-width: 1220px;
+}
+
+.no-col-padding {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/* Sign in button and its drop down items */
+
 .dropdown-menu {
     min-width: 7rem;
     padding: 0;
@@ -10,8 +21,6 @@
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 0.1rem;
 }
-
-/* Sign in button and its drop down items */
 
 .sign-in-button {
     background-color: hsl(163, 38%, 62%);
@@ -65,24 +74,16 @@
     padding: 1rem 0.75rem;
 }
 
-.no-col-padding {
-    padding-right: 0px;
-    padding-left: 0px;
-}
 
-.padding-top {
-    padding-top: 1.5rem; 
-    }
-
-.margin-left {
-    margin-left: 0;
-}
+/* CONTAINERUL LA SEARCH */
 
 .container-edited {
     float: right;
     max-width: 100%;
     padding-top: 1.5rem;
 }
+
+/*CAROUSEL*/
 
 /*
 Removes white gap between slides - chagnge to base color of slide images
@@ -106,15 +107,19 @@ Removes white gap between slides - chagnge to base color of slide images
     width:100%;
   }
 
-/* FOOTER */
+  /*SHADOW */
 
   .top-box {
     box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4);
   }
 
+  /*PRIMARY COLOR */
+
   .green {
     color: hsl(163, 38%, 62%);
   }
+
+  /* PRODUCTS */
 
   .card-product .info-wrap {
     border-top: 0;
@@ -123,6 +128,8 @@ Removes white gap between slides - chagnge to base color of slide images
   .card {
     border-radius: 0.1rem;
   }
+
+  /*SLIDER */
 
   .slider {
     -webkit-appearance: none;
@@ -164,20 +171,10 @@ Removes white gap between slides - chagnge to base color of slide images
     padding-top: 0.5rem;
   }
 
-  .title {
-    font-weight: bold;
-  }
+  /*CUSTOMIZE INPUT */
 
-  .padding-right {
-    padding-right: 50px;
-  }
-
-  .max-width {
-    max-width: 1220px;
-  }
-
-  .list-group-item {
-    background-color: #f8f8f8 
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 
   
