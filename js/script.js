@@ -1,6 +1,9 @@
 // some scripts
 
 // jquery ready start
+
+
+
 $(document).ready(function() {
 	// jQuery code
 
@@ -15,7 +18,8 @@ $(document).ready(function() {
     */ ///////////////////////////////////////
     
 
-	//////////////////////// Prevent closing from click inside dropdown
+    //////////////////////// Prevent closing from click inside dropdown
+    
     $(document).on('click', '.dropdown-menu', function (e) {
       e.stopPropagation();
     });
@@ -105,7 +109,63 @@ $(document).ready(function() {
            
         }); // each end.//
     } // end if
-	
+    
+    
+    // $(window).resize(function() {
+    //     updateClass();
+    // });
+
+    // function updateClass() {
+
+    // if ($(window).width() < 575) {
+    //     $('#carouselResponsive').addClass('flex-column').removeClass('flex-row');
+    // } else {
+    //     $('#carouselResponsive').addClass('flex-row').removeClass('flex-column');
+    // }
+
+      function myFunction(x) {
+        if (x.matches) { // If media query matches
+          $('#carouselResponsive').addClass('flex-column').removeClass('flex-row');
+        } else {
+            $('#carouselResponsive').addClass('flex-row').removeClass('flex-column');
+        }
+      }
+      
+      var x = window.matchMedia("(max-width: 575px)")
+      myFunction(x) // Call listener function at run time
+      x.addListener(myFunction) // Attach listener function on state changes 
+
+
+
+
+    //     jquey to add products
+
+    //   $('.add-to-cart').on('click', (e) => {
+    //     addToCart(e.currentTarget)
+    //   })
+      
+    //   const addToCart = (product) => {
+    //     const productId = $(product).attr('productId');
+    //     const isAlreadyInCart = $.grep(productsInCart, el => {return el.id == productId}).length;
+      
+    //     if (isAlreadyInCart) {
+    //       $.each(storageData, (i, el) => {
+    //         if (productId == el.id) {
+    //           el.itemsNumber += 1;
+    //         }
+    //       })
+    //     } else {
+    //       const newProduct = {
+    //         id: Number(productId),
+    //         itemsNumber: 1
+    //       }
+      
+    //       storageData.push(newProduct);
+    //     }
+      
+    //     updateCart();
+    //     updateProductList();
+    //   }
 
 }); 
 // jquery end
