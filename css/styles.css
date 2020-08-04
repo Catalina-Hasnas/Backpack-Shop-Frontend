@@ -11,6 +11,10 @@
   padding-left: 0px;
 }
 
+.price-old {
+  text-decoration: line-through;
+}
+
 /* Sign in button and its drop down items */
 
 .dropdown-menu {
