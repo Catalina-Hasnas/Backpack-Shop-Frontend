@@ -100,9 +100,9 @@ function renderCartProduct(id) {
                                 <div>
                                     <div class="d-flex justify-content-between flex-wrap">
                                         <div id="info">
-                                            <h5 id="title" class= "pt-2 pb-2">${product.name}</h5>
-                                            <p id="material" class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
-                                            <p id="color" class="mb-2 text-muted text-uppercase small">Color: ${product.color}</p>
+                                            <h5 class= "pt-2 pb-2">${product.name}</h5>
+                                            <p class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
+                                            <p class="mb-2 text-muted text-uppercase small">Color: ${product.color}</p>
                                         </div>
                                         <div>
                                             <div class="pt-3 mb-0 w-100">
@@ -118,12 +118,12 @@ function renderCartProduct(id) {
                                 <div>
                                     <div class="pt-3 d-flex justify-content-between">
                                         <div>
-                                            <a href="#" type="button"
-                                                class="card-link-secondary small text-uppercase mr-3"><i
-                                                    class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                                            <a href="#!" type="button"
+                                            <button 
+                                                class="deleteBtn btn-edit btn-primary card-link-secondary small text-uppercase mr-3" data-button-id="${product.id}"><i
+                                                    class="fas fa-trash-alt mr-1"></i> Remove item </button>
+                                            <button type="button"
                                                 class="card-link-secondary small text-uppercase"><i
-                                                    class="fas fa-heart mr-1"></i> Move to wish list </a>
+                                                    class="fas fa-heart mr-1"></i> Move to wish list </button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +134,37 @@ function renderCartProduct(id) {
             $("#cartList").append(tempDom);
         }
     });
-}
+
+    var itemsCount = testDB.length;
+
+    function pluralize(itemsCount, word) {
+        
+        if (itemsCount === 1) {
+            return itemsCount + " " + word;
+        } else {
+            return itemsCount + " " + word + "s";
+        }
+    }
+
+    document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
+
+    // $("#span").append(pluralize(itemsCount, "item"));
+
+    // $(".deleteBtn").click(function(){  
+    //     var id = $(this).data("button-id");
+    //     removeItem(id);
+    // })
+
+    // function removeItem(id, 1) {
+    //     for (i=0; i<testDB.length; i++)
+    //         testDB.splice(i,1);
+    //         }
+    // }
+
+
+}   
+
+
 
 function registerCartClickEvents(){
     $('#cartList').on('click', '.plus', function() {
@@ -147,4 +177,10 @@ function registerCartClickEvents(){
         var id = $(this).data("button-id");
         document.querySelector(`.quantity[data-input-id="${id}"]`).stepDown();
     });
+
+    $('#cartList').on('click',".deleteBtn", function() {
+        var id = $(this).data("button-id");
+        testDB.splice(id, 1); 
+    });
 }
+

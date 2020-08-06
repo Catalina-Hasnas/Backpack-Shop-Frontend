@@ -62,6 +62,10 @@
     border: none;
 }
 
+.btn {
+  border-radius: 0.1rem;
+}
+
 .input-group-append {
     margin-left: -9px;
 }
@@ -92,7 +96,7 @@
 /*
 Removes white gap between slides - chagnge to base color of slide images
 */
-.carousel {
+  .carousel {
     background: hsl(18, 92%, 95%);
   }
   
@@ -181,7 +185,49 @@ Removes white gap between slides - chagnge to base color of slide images
     -moz-appearance: textfield;
   }
 
+  /* ourStory title */
+
+  .wrapper {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
+  .typing-demo {
+    width: 17ch;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid;
+    font-family: "Montserrat";
+    font-size: 2em;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0
+    }
+  }
+      
+  @keyframes blink {
+    50% {
+      border-color: transparent
+    }
+  }
+
+  .font-size-text {
+    font-size: 16px;
+    text-align: justify;
+    letter-spacing: 3px;
+    font-family: "Montserrat";
+    line-height: 2.5;
+  }
+
+  .input-group-prepend {
+    margin-right: 0.5rem;
+  }
+
 
 
 
