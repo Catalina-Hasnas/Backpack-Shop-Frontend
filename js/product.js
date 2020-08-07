@@ -25,8 +25,7 @@ function getProduct(id) {
                 $("li").first().addClass("active");
                 $(".carousel-item").first().addClass("active");
 
-                    
-
+                $("#addToBasket").data("product-id", "" + id)
             }
         }
      );
@@ -80,12 +79,13 @@ function renderProducts(products) {
     });
 }
 
-function renderCartProduct(id) {
+function renderCartProduct(id, quantity) {
     $.ajax(
         {
         type:'GET',
         url:'http://localhost:8000/products/' + id,
         success: function(product){
+            console.log(product);
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <a href="productpage.html?id=${product.id}">
@@ -108,7 +108,7 @@ function renderCartProduct(id) {
                                             <div class="pt-3 mb-0 w-100">
                                                 <button
                                                     class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
-                                                <input class="quantity" min="0" name="quantity" value="1" type="number" data-input-id="${product.id}">
+                                                <input class="quantity" min="0" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}">
                                                 <button
                                                     class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
                                             </div>
@@ -135,7 +135,12 @@ function renderCartProduct(id) {
         }
     });
 
-    var itemsCount = testDB.length;
+    var itemsCount = 0;
+    order.products.forEach(product => {
+        itemsCount += parseInt(product.quantity);
+    });
+
+    console.log(itemsCount);
 
     function pluralize(itemsCount, word) {
         
@@ -147,40 +152,44 @@ function renderCartProduct(id) {
     }
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
-
-    // $("#span").append(pluralize(itemsCount, "item"));
-
-    // $(".deleteBtn").click(function(){  
-    //     var id = $(this).data("button-id");
-    //     removeItem(id);
-    // })
-
-    // function removeItem(id, 1) {
-    //     for (i=0; i<testDB.length; i++)
-    //         testDB.splice(i,1);
-    //         }
-    // }
-
-
 }   
 
+function changeHeader(){
+    console.log("change header");
+    var itemsCount = 0;
 
+    order.products.forEach(product => {
+        itemsCount += parseInt(product.quantity);
+    });
+
+    console.log(itemsCount);
+
+    var pluralize = function(itemsCount, word) {
+        
+        if (itemsCount === 1) {
+            return itemsCount + " " + word;
+        } else {
+            return itemsCount + " " + word + "s";
+        }
+    }
+
+    document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
+}
 
 function registerCartClickEvents(){
     $('#cartList').on('click', '.plus', function() {
         var id = $(this).data("button-id");
-        document.querySelector(`.quantity[data-input-id="${id}"]`).stepUp();
+        var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
+        input.stepUp();
+        order.addProduct(id, input.value);
     });
     
     
     $('#cartList').on('click', '.minus', function() {
         var id = $(this).data("button-id");
-        document.querySelector(`.quantity[data-input-id="${id}"]`).stepDown();
-    });
-
-    $('#cartList').on('click',".deleteBtn", function() {
-        var id = $(this).data("button-id");
-        testDB.splice(id, 1); 
+        var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
+        input.stepDown();
+        order.addProduct(id, input.value);
     });
 }
 
