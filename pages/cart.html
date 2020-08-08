@@ -289,7 +289,6 @@
             
             window.onload = function() {
                 order.getOrderId();
-                console.log(order.products);
                 order.products.forEach(function(product) {
                     renderCartProduct(product.productId, product.quantity);            
                 });

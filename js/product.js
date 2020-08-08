@@ -9,7 +9,6 @@ function getProduct(id) {
                 $("#description").html(product.description);
 
                 var i = 0;
-                console.log(product.img);
 
                 product.img.forEach(function(img) {
                     var li = $("<li></li>").attr("data-target","#carousel1_indicator").attr("data-slide-to", i.toString());
@@ -25,7 +24,8 @@ function getProduct(id) {
                 $("li").first().addClass("active");
                 $(".carousel-item").first().addClass("active");
 
-                $("#addToBasket").data("product-id", "" + id)
+                $("#addToBasket").data("product-id", id);
+                $("#addToBasket").data("product-price", (product.price - product.discount));
             }
         }
      );
@@ -83,7 +83,6 @@ function renderCartProduct(id, quantity) {
         type:'GET',
         url:'http://localhost:8000/products/' + id,
         success: function(product){
-            console.log(product);
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <a href="productpage.html?id=${product.id}">
@@ -106,7 +105,7 @@ function renderCartProduct(id, quantity) {
                                             <div class="pt-3 mb-0 w-100">
                                                 <button
                                                     class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
-                                                <input class="quantity" min="0" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}">
+                                                <input class="quantity" min="0" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${product.price - product.discount}">
                                                 <button
                                                     class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
                                             </div>
@@ -136,7 +135,6 @@ function renderCartProduct(id, quantity) {
         itemsCount += parseInt(product.quantity);
     });
 
-    console.log(itemsCount);
 
     function pluralize(itemsCount, word) {
         
@@ -151,14 +149,12 @@ function renderCartProduct(id, quantity) {
 }   
 
 function changeHeader(){
-    console.log("change header");
     var itemsCount = 0;
 
     order.products.forEach(product => {
         itemsCount += parseInt(product.quantity);
     });
 
-    console.log(itemsCount);
 
     var pluralize = function(itemsCount, word) {
         
@@ -177,7 +173,7 @@ function registerCartClickEvents(){
         var id = $(this).data("button-id");
         var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
         input.stepUp();
-        order.addProduct(id, input.value);
+        order.addProduct(id, input.value, input.getAttribute("data-product-price"));
     });
     
     
@@ -185,7 +181,7 @@ function registerCartClickEvents(){
         var id = $(this).data("button-id");
         var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
         input.stepDown();
-        order.addProduct(id, input.value);
+        order.addProduct(id, input.value, input.getAttribute("data-product-price"));
     });
 }
 

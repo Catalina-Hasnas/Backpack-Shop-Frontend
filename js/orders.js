@@ -17,11 +17,12 @@ var order = {
         return "02";
     },
     
-    addProduct: function(productId, qty){
+    addProduct: function(productId, qty, price){
         const product = {
             "orderId": this.currentOrderId,
             "productId": productId,
-            "quantity" : qty
+            "quantity" : qty,
+            "price" : price
         };
         
         $.ajax({
@@ -31,7 +32,6 @@ var order = {
             dataType: "json",
             data: JSON.stringify(product),
             success: function(data){
-                console.log(data);
                 saveProducts(data.products);
             },
             failure: function(errMsg) {
@@ -53,10 +53,8 @@ var order = {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
-                console.log(data);
                 saveProducts(data.products);
                 $("#cartList").html("");
-                console.log(data.products);
                 data.products.forEach(function(product) {
                     renderCartProduct(product.productId, product.quantity);            
                 });
@@ -71,4 +69,14 @@ var order = {
 function saveProducts(p) {
     order.products = p;
     changeHeader();
+    changeTotal();
 };
+
+function changeTotal() {
+    var total = 0;
+    order.products.forEach(product => {
+        total += parseInt(product.price) * parseInt(product.quantity);
+        console.log(product);
+    });
+    $("#totalPrice").html("<strong>$" + total + "</strong>");
+}

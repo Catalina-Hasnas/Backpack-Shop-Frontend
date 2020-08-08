@@ -284,7 +284,8 @@
             $("#addToBasket").on("click", function(){
                 order.getOrderId();
                 const productId = $("#addToBasket").data("product-id");
-                order.addProduct(productId, "1");
+                const productPrice = $("#addToBasket").data("product-price");
+                order.addProduct(productId, "1", productPrice);
             });
         };        
     </script>
