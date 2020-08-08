@@ -31,11 +31,11 @@ function getProduct(id) {
      );
 }
 
-function getProducts() {
+function getProducts(category = "", type = "") {
     $.ajax(
             {
                 type:'GET',
-                url:'http://localhost:8000/products/',
+                url:'http://localhost:8000/products/' + (category.length > 0 ? "category/" + category : "") + (type.length > 0 ? "/" + type : ""),
                 success: function(data){
                     renderProducts(data);
                 }
@@ -45,8 +45,6 @@ function getProducts() {
 
 
 function renderProducts(products) {
-    console.log(products);
-
     $("#products").html("");
     products.forEach(product => {
         var card = $("<div></div>").addClass("col-md-3 col-sm-6");
@@ -54,7 +52,7 @@ function renderProducts(products) {
         var preimg = $("<div></div>").addClass("img-wrap");
         var img = $("<img/>").attr('src', "" + product.img[0] + ""); 
         var figcaption = $("<figcaption></figcaption>").addClass("info-wrap");
-        var a = $("<a></a>").addClass("title").attr("href","productpage.html?id=" + product.id);
+        var a = $("<a></a>").addClass("title").attr("href","/categories/productpage.html?id=" + product.id);
         var preprice = $("<div></div>").addClass("price-wrap");
         var price = $("<span></span>").addClass("price-new");
         var priceold = $("<span></span>").addClass("price-old");
