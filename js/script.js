@@ -110,19 +110,6 @@ $(document).ready(function() {
         }); // each end.//
     } // end if
     
-    
-    // $(window).resize(function() {
-    //     updateClass();
-    // });
-
-    // function updateClass() {
-
-    // if ($(window).width() < 575) {
-    //     $('#carouselResponsive').addClass('flex-column').removeClass('flex-row');
-    // } else {
-    //     $('#carouselResponsive').addClass('flex-row').removeClass('flex-column');
-    // }
-
       function myFunction(x) {
         if (x.matches) { // If media query matches
           $('#carouselResponsive').addClass('flex-column').removeClass('flex-row');
@@ -135,17 +122,6 @@ $(document).ready(function() {
       myFunction(x) // Call listener function at run time
       x.addListener(myFunction) // Attach listener function on state changes 
 
-      function myFunction(x) {
-        if (x.matches) { // If media query matches
-          $('#article').addClass('flex-wrap').removeClass('flex-nowrap');
-        } else {
-            $('#article').addClass('flex-nowrap').removeClass('flex-wrap');
-        }
-      }
-      
-      var x = window.matchMedia("(max-width: 1000px)")
-      myFunction(x) // Call listener function at run time
-      x.addListener(myFunction) // Attach listener function on state changes 
 
 
 

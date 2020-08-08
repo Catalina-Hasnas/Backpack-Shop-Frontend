@@ -112,7 +112,7 @@ Removes white gap between slides - chagnge to base color of slide images
   */
   .carousel-item a {
     display: block;
-    width:100%;
+    
   }
 
   /*SHADOW */
@@ -228,6 +228,11 @@ Removes white gap between slides - chagnge to base color of slide images
     margin-right: 0.5rem;
   }
 
+  .w-10 {
+    width: 10%;
+  }
+
+  
 
 
 

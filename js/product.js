@@ -120,10 +120,8 @@ function renderCartProduct(id, quantity) {
                                         <div>
                                             <button 
                                                 class="deleteBtn btn-edit btn-primary card-link-secondary small text-uppercase mr-3" data-button-id="${product.id}"><i
-                                                    class="fas fa-trash-alt mr-1"></i> Remove item </button>
-                                            <button type="button"
-                                                class="card-link-secondary small text-uppercase"><i
-                                                    class="fas fa-heart mr-1"></i> Move to wish list </button>
+                                                    class="fas fa-trash-alt mr-1"></i> Remove item 
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
