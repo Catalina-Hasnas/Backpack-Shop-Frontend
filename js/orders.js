@@ -73,10 +73,36 @@ function saveProducts(p) {
 };
 
 function changeTotal() {
-    var total = 0;
-    order.products.forEach(product => {
-        total += parseInt(product.price) * parseInt(product.quantity);
-        // console.log(product);
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8000/orders/summary/" + order.currentOrderId,
+        success: function(data){
+            $("#preaside").html("");
+            data.products.forEach(product => {
+                var productName = $("<span></span>");
+                var productPrice = $("<span><span>");
+                var aside = $("<div></div>").addClass("pt-2 d-flex flex-row justify-content-between");
+
+                productName.append(product.name);
+                productPrice.append(product.price + " x " + product.quantity);
+                aside.append(productName, productPrice);
+                
+                $("#preaside").prepend(aside);
+            });
+
+        $("#total-price").html(data.productsTotal);
+            
+        },
+        failure: function(errMsg) {
+            console.log(errMsg);
+        }
     });
-    $("#totalPrice").html("<strong>$" + total + "</strong>");
+
+    // var total = 0;
+    // order.products.forEach(product => {
+    //     total += parseInt(product.price) * parseInt(product.quantity);
+    //     // console.log(product);
+    // });
+    // $("#totalPrice").html("<strong>$" + total + "</strong>");
 }

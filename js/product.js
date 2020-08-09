@@ -93,7 +93,7 @@ function renderCartProduct(id, quantity) {
         success: function(product){
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
-                                <a href="productpage.html?id=${product.id}">
+                                <a href="/categories/productpage.html?id=${product.id}">
                                     <div class="mask">
                                         <img id="photo" class="img-fluid w-100"
                                             src="${product.img[0]}">
@@ -107,13 +107,14 @@ function renderCartProduct(id, quantity) {
                                         <div id="info">
                                             <h5 class= "pt-2 pb-2">${product.name}</h5>
                                             <p class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
-                                            <p class="mb-2 text-muted text-uppercase small">Color: ${product.color}</p>
+                                            <p class="mb-3 text-muted text-uppercase small">Color: ${product.color}</p>
+                                            <p class=" font-weight-bold text-muted text-uppercase small">Price: $${product.price-product.discount}</p>
                                         </div>
                                         <div>
                                             <div class="pt-3 mb-0 w-100">
                                                 <button
                                                     class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
-                                                <input class="quantity" min="0" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${product.price - product.discount}">
+                                                <input class="quantity" min="1" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${product.price - product.discount}">
                                                 <button
                                                     class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
                                             </div>
@@ -134,7 +135,7 @@ function renderCartProduct(id, quantity) {
                             </div>
                         </div>`;
             var tempDom = $($.parseHTML(html));
-            $("#cartList").append(tempDom);
+            $("#cartList").prepend(tempDom);
         }
     });
 
