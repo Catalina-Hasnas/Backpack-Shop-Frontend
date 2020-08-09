@@ -24,6 +24,14 @@ function getProduct(id) {
                 $("li").first().addClass("active");
                 $(".carousel-item").first().addClass("active");
 
+                $("#thumbnail").addClass("col-lg-6").attr('src', "" + product.img[0] + "");
+                var material = $("#material").addClass("text-uppercase").html("material: " + product.material);
+                var color = $("#color").addClass("text-uppercase").html("color: " + product.color);
+                var modalprice = $("#modal-price").addClass("text-uppercase").append("price: $" + product.price);
+                $("#characterictics").addClass("col-lg-6").html(material + "<br>" + color + "<br>" + modalprice);
+
+
+
                 $("#addToBasket").data("product-id", id);
                 $("#addToBasket").data("product-price", (product.price - product.discount));
             }
@@ -137,13 +145,23 @@ function renderCartProduct(id, quantity) {
 
 
     function pluralize(itemsCount, word) {
+
+        // return (itemsCount === 1 ? itemsCount + " " + word : itemsCount + " " + word + "s" ); 
         
-        if (itemsCount === 1) {
-            return itemsCount + " " + word;
-        } else {
-            return itemsCount + " " + word + "s";
-        }
+        return itemsCount + " " + word + (itemsCount === 1 ? "" : "s"); 
+
+        
+        // if (itemsCount === 1) {
+        //     return itemsCount + " " + word;
+        // } else {
+        //     return itemsCount + " " + word + "s";
+        // }
     }
+
+    // var func = (itemsCount, word) => itemsCount + " " + word + (itemsCount === 1 ? "" : "s");
+
+    // func(3, "item")
+    // pluralize(3, "item")
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
 }   

@@ -76,7 +76,7 @@ function changeTotal() {
     var total = 0;
     order.products.forEach(product => {
         total += parseInt(product.price) * parseInt(product.quantity);
-        console.log(product);
+        // console.log(product);
     });
     $("#totalPrice").html("<strong>$" + total + "</strong>");
 }
