@@ -219,9 +219,10 @@ Removes white gap between slides - chagnge to base color of slide images
   .font-size-text {
     font-size: 16px;
     text-align: justify;
-    letter-spacing: 3px;
     font-family: "Montserrat";
+    letter-spacing: 3px;
     line-height: 2.5;
+    
   }
 
   .input-group-prepend {
@@ -232,6 +233,27 @@ Removes white gap between slides - chagnge to base color of slide images
     width: 10%;
   }
 
+  .letter-spacing-small {
+    letter-spacing: 0px;
+    line-height: 2;
+  }
+
+  .letter-spacing-big {
+    letter-spacing: 3px;
+    line-height: 2.5;
+  }
+
+  .text-indent {
+    text-indent: 2em;
+  }
+
+  .terms-and-conditions {
+    max-width: 900px;
+  }
+
+  #image {
+    background-image: url(../images/items/categories/100.jpg)
+  }
   
 
 

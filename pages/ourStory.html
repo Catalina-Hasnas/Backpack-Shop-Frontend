@@ -36,9 +36,12 @@
 
 		function myFunction(x) {
         if (x.matches) { // If media query matches
-          $('#article').addClass('flex-wrap').removeClass('flex-nowrap');
+		  $('#article').addClass('flex-wrap-reverse');
+		  $('#enhancedtext').addClass('letter-spacing-small');
         } else {
-            $('#article').addClass('flex-nowrap').removeClass('flex-wrap');
+			$('#article').removeClass('flex-wrap-reverse');
+			$('#enhancedtext').removeClass('letter-spacing-small');
+			
         }
 		}
 		
@@ -163,10 +166,10 @@
             </div>
 
             <div class="container mt-3 mb-2"> 
-                <div id="article" class="flex d-flex flex-row justify-content-between align-content-center">
+                <div id="article" class="flex d-flex flex-row justify-content-between align-content-center flex-nowrap">
 
-                    <div class="col-lg-6 d-flex flex-column justify-content-around">
-                        <p class= " border-top border-bottom border-primary p-2 border-primary font-weight-bold  font-size-text align-self-center">Hemp and Linen este despre… <br>
+                    <div class="col-lg-6 d-flex flex-column">
+                        <p id="enhancedtext" class= " border-top border-bottom border-primary p-2 border-primary font-weight-bold  font-size-text align-self-center">Hemp and Linen este despre… <br>
                             Pasiunea pentru artizanat și calitate,<br>
                             Aprecierea materialelor naturale,<br>
                             Dragostea față de oameni și natură. <br>
@@ -181,13 +184,51 @@
                             dar foarte rezistent în timp. Țesătura de in este perfectă pentru sezonul cald 
                             și cea mai potrivită pentru piele. Oferă o senzație de răcoare și absoarbe bine umezeala. 
 						</p>
-						<div class="flex d-flex flex-row justify-content-center green">
+						<div class="flex d-flex flex-row justify-content-center green p-2">
                             <i class="fa fa-leaf" aria-hidden="true"></i> <i class="fa fa-leaf" aria-hidden="true"></i> <i class="fa fa-leaf" aria-hidden="true"></i>
                         </div>
-                    </div>
-                    <img class="img-fluid" src="../images/items/categories/prod1.jpg">
-                    
-                </div>
+					</div>
+					
+					<img class="img-fluid pb-4" src="../images/items/categories/prod1.jpg"> 
+				</div>
+
+				<div class=" wrapper">
+					<div class="typing-demo">
+					  And this is our team...
+					</div>
+				</div>
+
+				<div class="mt-2 d-flex flex-row justify-content-center flex-wrap">
+
+					<div class="card mr-3" style="width: 18rem;">
+						<img class="card-img-top rounded-0" src="../images/items/team/1.jfif" alt="Card image cap">
+							<div class="card-body">
+								<p class="card-text green">Madalina Mandaly <p class="card-text "> Director de directori de directori. </p>
+							</div>
+					</div>
+
+					<div class="card mr-3" style="width: 18rem;">
+						<img class="card-img-top rounded-0" src="../images/items/team/2.jfif" alt="Card image cap">
+							<div class="card-body">
+								<p class="card-text green">Will Wonderfield</p>  <p class="card-text "> Director de directori. </p>
+							</div>
+					</div>
+
+					<div class="card" style="width: 18rem;">
+						<img class="card-img-top rounded-0" src="../images/items/team/3.jfif" alt="Card image cap">
+							<div class="card-body">
+								<p class="card-text green">Silhastru Silvestru</p> <p class="card-text "> Director. </p>
+							</div>
+					</div>
+
+
+<!-- 
+					<img class="mr-3" src="../images/items/team/1.jfif">
+					<img class="mr-3" src="../images/items/team/2.jfif">
+					<img src="../images/items/team/3.jfif"> -->
+				</div>
+
+				
             </div>
 
         </article>
@@ -195,69 +236,72 @@
 
         <!-- ========================= FOOTER ================================= -->
         <footer class="section-footer header-bg ">
-			<div class="top-box">
-				<div class="container">
-					<section class="footer-top pt-4">
-						<div class="row">
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
-								<div class="bordright">
-									<p class="green title">About Hemp &amp; Linen</p>
-					
-									<ul class="foot list-unstyled">
-                                        <li><a href="ourStory.html">Our Story</a></li>
-                                        <li><a href="contacts.html">FAQs</a></li>
-                                        <li><a href="contacts.html">Let's Get Social</a></li>
-                                    </ul>
-					
-						
-								</div>	
-							</div>
-					
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
-								<div class="bordright nobord650">
-									<p class=" green title">Our Marketplace</p>
-					
-									<ul class="foot list-unstyled">
+            <div class="top-box">
+                <div class="container">
+                    <section class="footer-top pt-4">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
+                                <div class="bordright">
+                                    <p class="green title">About Hemp &amp; Linen</p>
+
+                                    <ul class="foot list-unstyled">
+										<li><a href="ourStory.html">Our Story</a></li>
+										<li><a href="termsAndConditions.html">Terms and conditions</a></li>
+										<li><a href="delivery.html">Delivery and payment</a></li>
+									</ul>
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
+                                <div class="bordright nobord650">
+                                    <p class=" green title">Our Marketplace</p>
+
+                                    <ul class="foot list-unstyled">
                                         <li><a href="../categories/etnobackpacks.html">Etno backpacks</a></li>
                                         <li><a href="../categories/elegantbackpacks.html">Elegant backpacks</a></li>
                                         <li><a href="../categories/sportbackpacks.html">Sport backpacks</a></li>
                                         <li><a href="../categories/others.html">Others</a></li>
                                     </ul>
-								</div>
-							</div>
-					
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
-								<div class="bordright">
-									<p class="green title">Customer Service</p>
-					
-									<ul class="foot list-unstyled">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
+                                <div class="bordright">
+                                    <p class="green title">Customer Service</p>
+
+                                    <ul class="foot list-unstyled">
                                         <li><a href="../index.html">Home</a></li>
                                         <li><a href="contacts.html">Contact Us</a></li>
                                         <li><a href="registration.html">My Account</a></li>
                                         <li><a href="cart.html">My Cart</a></li>
-                                        <li><a href="contacts.html">Help</a></li>
                                     </ul>
-								</div>
-							</div>
-					
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-2xs-6 col-3xs-12">
 								<div class="bordrightlast">
-									<p class="green title">Sellers Services</p>
+									<p class="green title">Contacts</p>
 					
 									<ul class="foot list-unstyled">
-										<li><a href="#">Sellers on Hemp&amp;Linen</a></li>
-										<li><a href="#">Sellers Log In</a></li>
-										<li><a href="#">Apply to sell with us</a></li>
-										<li><a href="#">Sellers How-to Guide</a></li>
-										<li><a href="#">Sellers Image Guide</a></li>
+										<li>Adress: Stefan cel Mare 1, Timisoara </li>
+										<li>Phone: + 40 234 567 89 </li>
+										<li>Email: info@gmail.com </li>
 									</ul>
 								</div>
+								<div class="mb-2 btn-group white">
+									<a class="btn btn-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/realizatecudragoste/"><i class="fab fa-facebook-f  fa-fw"></i></a>
+									<a class="btn btn-instagram" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram  fa-fw"></i></a>
+									<a class="btn btn-youtube" title="Youtube" target="_blank" href="#"><i class="fab fa-youtube  fa-fw"></i></a>
+									<a class="btn btn-twitter" title="Twitter" target="_blank" href="#"><i class="fab fa-twitter  fa-fw"></i></a>
+								</div>
 							</div>
-						</div>
-					</section>
-				</div> 
-			</div> 
-		</footer>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </footer>
 		   <!-- ========================= FOOTER END ============================= -->
 	</body>
 </html>

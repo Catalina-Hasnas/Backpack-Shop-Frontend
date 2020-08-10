@@ -4,6 +4,9 @@ function getProduct(id) {
            type:'GET',
            url:'http://localhost:8000/products/' + id,
            success: function(product){
+
+            //PRODUCT PAGE
+
                 $("#title").html(product.name);
                 $("#price").html("$"+ (product.price - product.discount)); 
                 $("#description").html(product.description);
@@ -20,6 +23,8 @@ function getProduct(id) {
                     $(".carousel-inner").append(preimage);
 
                 });
+
+            // CAROUSEL - PRODUCT PAGE
 
                 $("li").first().addClass("active");
                 $(".carousel-item").first().addClass("active");
@@ -39,6 +44,8 @@ function getProduct(id) {
      );
 }
 
+// CATEGORY/ TYPE FILTERING
+
 function getProducts(category = "", type = "") {
     $.ajax(
             {
@@ -51,6 +58,7 @@ function getProducts(category = "", type = "") {
         );
 }
 
+//PRODUCTS CART
 
 function renderProducts(products) {
     $("#products").html("");
@@ -84,6 +92,8 @@ function renderProducts(products) {
         
     });
 }
+
+//CART PRODUCTS
 
 function renderCartProduct(id, quantity) {
     $.ajax(
@@ -144,28 +154,24 @@ function renderCartProduct(id, quantity) {
         itemsCount += parseInt(product.quantity);
     });
 
-
     function pluralize(itemsCount, word) {
-
-        // return (itemsCount === 1 ? itemsCount + " " + word : itemsCount + " " + word + "s" ); 
         
         return itemsCount + " " + word + (itemsCount === 1 ? "" : "s"); 
+    }
 
-        
         // if (itemsCount === 1) {
         //     return itemsCount + " " + word;
         // } else {
         //     return itemsCount + " " + word + "s";
         // }
-    }
 
-    // var func = (itemsCount, word) => itemsCount + " " + word + (itemsCount === 1 ? "" : "s");
+        // var func = (itemsCount, word) => itemsCount + " " + word + (itemsCount === 1 ? "" : "s");
 
-    // func(3, "item")
-    // pluralize(3, "item")
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
 }   
+
+//  DE INTREBAT PE PETRU
 
 function changeHeader(){
     var itemsCount = 0;
