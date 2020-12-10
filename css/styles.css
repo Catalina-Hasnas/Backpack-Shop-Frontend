@@ -6,13 +6,17 @@
   max-width: 1220px;
 }
 
-.no-col-padding {
-  padding-right: 0px;
-  padding-left: 0px;
-}
-
 .price-old {
   text-decoration: line-through;
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+  -webkit-box-flex: 0 !important;
+}
+
+.section-width {
+  max-width: 1400px;
 }
 
 /* Sign in button and its drop down items */
@@ -78,18 +82,18 @@
     font-size: 1.3rem;
 }
 
-.navbar-toggler {
-    padding: 1rem 0.75rem;
+.infoContainer {
+  min-width: 300px;
 }
 
 
-/* CONTAINERUL LA SEARCH */
 
-.container-edited {
-    float: right;
-    max-width: 100%;
-    padding-top: 1.5rem;
-}
+
+/*SEARCH */
+
+/* .mr-lg-5 {
+  margin-right: 5.2rem !important;
+} */
 
 /*CAROUSEL*/
 
@@ -179,6 +183,10 @@ Removes white gap between slides - chagnge to base color of slide images
     padding-top: 0.5rem;
   }
 
+  .text-shadow {
+    text-shadow: 5px 0px 10px black;
+  }
+
   /*CUSTOMIZE INPUT */
 
   input[type="number"] {
@@ -189,7 +197,7 @@ Removes white gap between slides - chagnge to base color of slide images
     color: darkslategrey;
   }
 
-  /* ourStory title */
+  /* ourStory page */
 
   .wrapper {
     height: 10vh;
@@ -251,13 +259,25 @@ Removes white gap between slides - chagnge to base color of slide images
     text-indent: 2em;
   }
 
+  .image-size {
+    max-width: 50%;
+  }
+
+  @media only screen and (max-width: 991px) {
+    .image-size {
+      max-width: 100%;
+    }
+  }
+
+  .line-height {
+    line-height: 2;
+  }
+
   .terms-and-conditions {
     max-width: 900px;
   }
 
-  #image {
-    background-image: url(../images/items/categories/100.jpg)
-  }
+  
 
 
 
