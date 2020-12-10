@@ -159,19 +159,8 @@ function renderCartProduct(id, quantity) {
         return itemsCount + " " + word + (itemsCount === 1 ? "" : "s"); 
     }
 
-        // if (itemsCount === 1) {
-        //     return itemsCount + " " + word;
-        // } else {
-        //     return itemsCount + " " + word + "s";
-        // }
-
-        // var func = (itemsCount, word) => itemsCount + " " + word + (itemsCount === 1 ? "" : "s");
-
-
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
 }   
-
-//  DE INTREBAT PE PETRU
 
 function changeHeader(){
     var itemsCount = 0;

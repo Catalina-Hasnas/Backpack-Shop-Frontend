@@ -185,6 +185,10 @@ Removes white gap between slides - chagnge to base color of slide images
     -moz-appearance: textfield;
   }
 
+  label {
+    color: darkslategrey;
+  }
+
   /* ourStory title */
 
   .wrapper {
@@ -254,7 +258,6 @@ Removes white gap between slides - chagnge to base color of slide images
   #image {
     background-image: url(../images/items/categories/100.jpg)
   }
-  
 
 
 
