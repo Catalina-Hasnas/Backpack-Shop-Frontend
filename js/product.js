@@ -1,9 +1,12 @@
 function getProduct(id) {
+   
     $.ajax(
         {
            type:'GET',
-           url:'http://localhost:8000/products/' + id,
+           crossDomain: true,
+           url:'https://e-commerce-71bf2-default-rtdb.firebaseio.com/products/' + id + '.json',
            success: function(product){
+               console.log(product);
 
             //PRODUCT PAGE
 
@@ -41,17 +44,17 @@ function getProduct(id) {
                 $("#addToBasket").data("product-price", (product.price - product.discount));
             }
         }
-     );
+    );
 }
-
 // CATEGORY/ TYPE FILTERING
 
-function getProducts(category = "", type = "") {
+function getProducts() {
     $.ajax(
             {
                 type:'GET',
-                url:'http://localhost:8000/products/' + (category.length > 0 ? "category/" + category : "") + (type.length > 0 ? "/" + type : ""),
+                url:'https://e-commerce-71bf2-default-rtdb.firebaseio.com/products.json',
                 success: function(data){
+                    console.log(data);
                     renderProducts(data);
                 }
             }
@@ -62,13 +65,17 @@ function getProducts(category = "", type = "") {
 
 function renderProducts(products) {
     $("#products").html("");
-    products.forEach(product => {
+    for (const name in products) {
+        let product = products[name];
+        console.log(product);
+        console.log(name);
+
         var card = $("<div></div>").addClass("col-md-3 col-sm-6");
         var figure = $("<figure></figure>").addClass("card card-product");
         var preimg = $("<div></div>").addClass("img-wrap");
         var img = $("<img/>").attr('src', "" + product.img[0] + ""); 
         var figcaption = $("<figcaption></figcaption>").addClass("info-wrap");
-        var a = $("<a></a>").addClass("title").attr("href","/categories/productpage.html?id=" + product.id);
+        var a = $("<a></a>").addClass("title").attr("href","/categories/productpage.html?id=" + name);
         var preprice = $("<div></div>").addClass("price-wrap");
         var price = $("<span></span>").addClass("price-new");
         var priceold = $("<span></span>").addClass("price-old");
@@ -90,7 +97,14 @@ function renderProducts(products) {
         card.append(figure);
         $("#products").append(card);
         
-    });
+    }
+
+
+
+    
+        
+        
+    
 }
 
 //CART PRODUCTS

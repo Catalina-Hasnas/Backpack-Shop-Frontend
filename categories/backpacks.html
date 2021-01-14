@@ -277,10 +277,10 @@
 			};  
 			
 			function getFilteredCategory() {
-				var entoCheckBox = document.getElementById("defaultInline1");
+				var etnoCheckBox = document.getElementById("defaultInline1");
 				var elegantCheckBox = document.getElementById("defaultInline2");
 				var sportCheckBox = document.getElementById("defaultInline3");
-				if (entoCheckBox.checked) {
+				if (etnoCheckBox.checked) {
 					getProducts("backpacks","etno") 
 				}
 
@@ -292,7 +292,7 @@
 					getProducts("backpacks", "sport")
 				}
 
-				if (!entoCheckBox.checked && !elegantCheckBox.checked && !sportCheckBox.checked) {
+				if (!etnoCheckBox.checked && !elegantCheckBox.checked && !sportCheckBox.checked) {
 					getProducts("backpacks");
 				}
 			}
