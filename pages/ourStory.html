@@ -55,106 +55,102 @@
 	<body>
 		<!-- ========================= SECTION HEADER ========================= -->
 		<header class="font-size header-bg">
-			<section class="header-bg">
-				<div class="container pt-4 ">
-					<div class="row  justify-content-between">
-						<div class="col-xl-4 col-lg-4 col-md-10 col-sm-10">
-							<div class="brand-wrap">
+			<section class="header-bg d-flex flex-column">
+				<div class="pt-4 d-flex flex-row justify-content-around flex-wrap">
+
+					<div class="row justify-content-between">
+						<!-- LOGO -->
+						<div class="brand-wrap">
+							<a href="../index.html">
 								<img src="../images/logos/logo.png">
-							</div> <!-- brand-wrap.// -->
-						</div>
-
-					
-						<div class="col-xl-6 col-lg-2 col-md-12 col-sm-12 no-col-padding">
-							<div class="container-edited">
-								<div class="d-flex justify-content-center align-content-center">
-									<div class="col-auto">
-										<a href="#" data-toggle="dropdown" data-offset="20,10">
-											<button class="btn-edit btn-primary"> Sign in </button>
-										</a>
-										
-										<div class="dropdown-menu">
-											<form class="px-4 py-3">
-												<div class="form-group">
-													<label>Email address</label>
-													<input type="email" class="form-control"
-														placeholder="email@example.com">
-												</div>
-												<div class="form-group">
-													<label>Password</label>
-													<input type="password" class="form-control" placeholder="Password">
-												</div>
-												<button type="submit" class="sign-in-button">Sign in</button>
-											</form>
-											<hr class="dropdown-divider">
-											<a class="dropdown-item" href="registration.html">Don't have an account? Sign
-												up</a>
-											<a class="dropdown-item" href="#">Forgot password?</a>
-										</div> <!--  dropdown-menu .// -->
-									</div> 
-									
-									<div class="col-auto">
-										<a href="cart.html" class="widget-header">
-											<div class="icontext">
-												<div class="icon-wrap"><i class="fa fa-shopping-basket"></i></div>
-												<div class="text-wrap">Basket</div>
-											</div>
-										</a>
-									</div> 
-
-									<div class="col-auto">
-										<a href="favorites.html" class="widget-header">
-											<div class="icontext">
-												<div class="icon-wrap"><i class="fa fa-heart"></i></div>
-												<div class="text-wrap">Favorites</div>
-											</div>
-										</a>
+							</a>
+						</div> 
+					</div>
+					<!-- ACCOUNT INFO -->
+					<div class="d-flex flex-row align-items-center justify-content-between infoContainer">
+						<!-- SIGN IN DROPDOWN -->
+						<div>
+							<a href="#" data-toggle="dropdown" data-offset="20,10">
+								<button class="btn-edit btn-primary"> Sign in </button>
+							</a>
+							
+							<div class="dropdown-menu">
+								<form class="px-4 py-3">
+									<div class="form-group">
+										<label>Email address</label>
+										<input type="email" class="form-control"
+											placeholder="email@example.com">
 									</div>
-								</div>
+									<div class="form-group">
+										<label>Password</label>
+										<input type="password" class="form-control" placeholder="Password">
+									</div>
+									<button type="submit" class="sign-in-button">Sign in</button>
+								</form>
+								<hr class="dropdown-divider">
+								<a class="dropdown-item" href="registration.html">Don't have an account? Sign
+									up</a>
+								<a class="dropdown-item" href="#">Forgot password?</a>
 							</div> 
+						</div> 
+						<!-- BASKET -->
+						<div>
+							<a href="cart.html" class="widget-header">
+								<div class="icontext">
+									<div class="icon-wrap"><i class="fa fa-shopping-basket"></i></div>
+									<div class="text-wrap">Basket</div>
+								</div>
+							</a>
+						</div> 
+						<!-- FAVORITES -->
+						<div>
+							<a href="favorites.html" class="widget-header">
+								<div class="icontext">
+									<div class="icon-wrap"><i class="fa fa-heart"></i></div>
+									<div class="text-wrap">Favorites</div>
+								</div>
+							</a>
 						</div>
 					</div>
-				</div> 
-			</section> 
+				</div>
 
-			<nav class="container navbar navbar-expand-md header-bg">
+				<nav class="ml-lg-5 section-width navbar navbar-expand-lg header-bg d-flex justify-content-around">
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-					<span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
-				</button>
-
-					<div class=" flex flex-wrap justify-content-between collapse navbar-collapse" id="collapsibleNavbar">	
-
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<i class="fa fa-bars" aria-hidden="true"></i>
+					</button>
+				  
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav">
 							<li class="nav-item active"><a class="nav-link" href="../index.html">Home </a></li>
 							<li class="nav-item"><a class="nav-link" href="ourStory.html"> Our Story </a></li>
-
 							<li class="nav-item dropdown">
-								<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">  Backpacks  </a>
+								<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Backpacks </a>
 								<ul class="dropdown-menu header-bg">
-									<li><a class=" text-center header-bg dropdown-item"href="../categories/backpacks.html"><strong>See all</strong></a></li>
-									<hr class="mt-0 mb-0 pt-1 header-bg text-center w-75">
+									<li><a class=" text-center dropdown-item"href="../categories/backpacks.html"><strong>See all</strong></a></li>
+									<hr class="mt-0 mb-0 pt-1 text-center w-75">	
 									<li><a class="dropdown-item" href="../categories/etnobackpacks.html"> Etno</a></li>
 									<li><a class="dropdown-item" href="../categories/elegantbackpacks.html"> Elegant </a></li>
 									<li><a class="dropdown-item" href="../categories/sportbackpacks.html"> Sport </a></li>
 								</ul>
 							</li>
-
 							<li class="nav-item"><a class="nav-link" href="../categories/others.html"> Others </a></li>
-
 							<li class="nav-item"><a class="nav-link" href="contacts.html"> Contacts </a></li>
 						</ul>
-						<form action="#" class="form-inline">
-							<input type="text" class="form-control mr-sm-2" placeholder="Search">
-								<div class="input-group-append">
-								<button class="btn btn-primary btn-edit" type="submit">
-									<i class="fa fa-search"></i>
-								</button>
-								</div>
-						</form>
-					</div>	
-			</nav>	
-        </header>
+					</div>
+
+					<form action="#" class="form-inline">
+						<input type="text" class="form-control mr-sm-2" placeholder="Search">
+							<div class="input-group-append">
+							<button class="btn btn-primary btn-edit" type="submit">
+								<i class="fa fa-search"></i>
+							</button>
+							</div>
+					</form>
+				</nav>				 
+			</section> 
+		</header>
         <!-- ========================= SECTION HEADER ENDS ==================== -->
 
         <!-- ========================= SECTION CONTENT ======================== -->
@@ -166,33 +162,43 @@
             </div>
 
             <div class="container mt-3 mb-2"> 
-                <div id="article" class="flex d-flex flex-row justify-content-between align-content-center flex-nowrap">
+                <div id="article" class="d-flex flex-row justify-content-between align-content-center flex-wrap">
 
                     <div class="col-lg-6 d-flex flex-column">
-                        <p id="enhancedtext" class= " border-top border-bottom border-primary p-2 border-primary font-weight-bold  font-size-text align-self-center">Hemp and Linen este despre… <br>
-                            Pasiunea pentru artizanat și calitate,<br>
-                            Aprecierea materialelor naturale,<br>
-                            Dragostea față de oameni și natură. <br>
-                        </p>
-                        <p class="font-size-text-2 text-justify">
-                            Pe parcursul celor 3 ani de când am pornit Hemp and Linen, 
-                            am realizat rucsacuri practice, care sunt rezistente și pot aduce bucurie mult timp. 
-                            Rucsacurile noastre pot fi purtate zi de zi la serviciu, dar și în călătorii. 
-
-                            Pentru modelele de vară, folosim doar in și bumbăcel în realizarea rucsacurilor. 
-                            Sunt materiale naturale și sustenabile. Inul pe care îl folosim este moale, 
-                            dar foarte rezistent în timp. Țesătura de in este perfectă pentru sezonul cald 
-                            și cea mai potrivită pentru piele. Oferă o senzație de răcoare și absoarbe bine umezeala. 
+                        <p id="enhancedtext" class= " border-top border-bottom border-primary p-2 border-primary font-weight-bold  font-size-text align-self-center">Hemp and Linen is all about... <br>
+                            Passion for craftsmanship and quality,<br>
+                            Appreciation for natural fibers,<br>
+                            Love for people and nature. <br>
+						</p>
+						
+                        <p class="font-size-text-2 text-justify text-indent">
+							Since we crated Hemp and Linen 3 years ago, 
+							we made practical and elegant backpacks that will bring happines for a long time,
+							You can wear our backpacks everyday to work, to school or when you go travelling.
+						</p>
+							<br>
+						<p class="font-size-text-2 text-justify text-indent">
+							For the summer models, we only use linen, hemp and organic cotton,
+							They are sustainable and natural fabrics. The linen is soft, but durable in time.
+							It is the perfect choise for the warm season and it's confortable on the skin.
+						</p>
+							<br>
+						<p class="font-size-text-2 text-justify text-indent">
+							The sport models are made from waterproof recycled polyester and 
+							will be the best companion in your adventures.
 						</p>
 						<div class="flex d-flex flex-row justify-content-center green p-2">
                             <i class="fa fa-leaf" aria-hidden="true"></i> <i class="fa fa-leaf" aria-hidden="true"></i> <i class="fa fa-leaf" aria-hidden="true"></i>
                         </div>
 					</div>
+
 					
-					<img class="img-fluid pb-4" src="../images/items/categories/prod1.jpg"> 
+					<img class="pb-4 image-size" src="../images/items/categories/prod1.jpg"> 
+					
+					
 				</div>
 
-				<div class=" wrapper">
+				<div class="wrapper">
 					<div class="typing-demo">
 					  And this is our team...
 					</div>
@@ -203,21 +209,21 @@
 					<div class="card mr-3" style="width: 18rem;">
 						<img class="card-img-top rounded-0" src="../images/items/team/1.jfif" alt="Card image cap">
 							<div class="card-body">
-								<p class="card-text green">Madalina Mandaly <p class="card-text "> Director de directori de directori. </p>
+								<p class="card-text green">Madalina Mandaly <p class="card-text "> The one with the needle. </p>
 							</div>
 					</div>
 
 					<div class="card mr-3" style="width: 18rem;">
 						<img class="card-img-top rounded-0" src="../images/items/team/2.jfif" alt="Card image cap">
 							<div class="card-body">
-								<p class="card-text green">Will Wonderfield</p>  <p class="card-text "> Director de directori. </p>
+								<p class="card-text green">Will Wonderfield</p>  <p class="card-text "> The one with the finances. </p>
 							</div>
 					</div>
 
-					<div class="card" style="width: 18rem;">
+					<div class="card mr-3" style="width: 18rem;">
 						<img class="card-img-top rounded-0" src="../images/items/team/3.jfif" alt="Card image cap">
 							<div class="card-body">
-								<p class="card-text green">Silhastru Silvestru</p> <p class="card-text "> Director. </p>
+								<p class="card-text green">Silhastru Silvestru</p> <p class="card-text "> The one with the marketing. </p>
 							</div>
 					</div>
 
