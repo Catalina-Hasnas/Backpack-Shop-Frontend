@@ -1,15 +1,8 @@
 function getProduct(id) {
-   
-    $.ajax(
-        {
-           type:'GET',
-           crossDomain: true,
-           url:'https://e-commerce-71bf2-default-rtdb.firebaseio.com/products/' + id + '.json',
-           success: function(product){
-               console.log(product);
-
-            //PRODUCT PAGE
-
+    db.collection('products').where('id', '==', id ).get().then((snapshot) => {
+        snapshot.forEach(doc => {
+            const product = doc.data();
+            // //PRODUCT PAGE
                 $("#title").html(product.name);
                 $("#price").html("$"+ (product.price - product.discount)); 
                 $("#description").html(product.description);
@@ -37,75 +30,71 @@ function getProduct(id) {
                 var color = $("#color").addClass("text-uppercase").html("color: " + product.color);
                 var modalprice = $("#modal-price").addClass("text-uppercase").append("price: $" + product.price);
                 $("#characterictics").addClass("col-lg-6").html(material + "<br>" + color + "<br>" + modalprice);
-
-
-
                 $("#addToBasket").data("product-id", id);
                 $("#addToBasket").data("product-price", (product.price - product.discount));
-            }
-        }
-    );
+        });
+    })
 }
+
 // CATEGORY/ TYPE FILTERING
 
-function getProducts() {
-    $.ajax(
-            {
-                type:'GET',
-                url:'https://e-commerce-71bf2-default-rtdb.firebaseio.com/products.json',
-                success: function(data){
-                    console.log(data);
-                    renderProducts(data);
-                }
-            }
-        );
+function getProducts(category="", type="") {
+
+    if (category=="" && type=="") {
+        db.collection('products').orderBy('id').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                renderProducts(doc.data())
+            })
+        });
+    }
+    if (category !=="" && type=="") {
+        db.collection('products').where('category', '==', category).orderBy('id').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                renderProducts(doc.data())
+            })
+        });
+    }
+    if (category !=="" && type !=="") {
+        db.collection('products').where('category', '==', category).where('type', '==', type).get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                renderProducts(doc.data())
+            })
+        });
+    }
 }
 
 //PRODUCTS CART
 
-function renderProducts(products) {
-    $("#products").html("");
-    for (const name in products) {
-        let product = products[name];
-        console.log(product);
-        console.log(name);
+function renderProducts(product) {
+    console.log(product);
+    var card = $("<div></div>").addClass("col-md-3 col-sm-6");
+    var figure = $("<figure></figure>").addClass("card card-product");
+    var preimg = $("<div></div>").addClass("img-wrap");
+    var img = $("<img/>").attr('src', "" + product.img[0] + ""); 
+    var figcaption = $("<figcaption></figcaption>").addClass("info-wrap");
+    var a = $("<a></a>").addClass("title").attr("href","/categories/productpage.html?id=" + product.id);
+    var preprice = $("<div></div>").addClass("price-wrap");
+    var price = $("<span></span>").addClass("price-new");
+    var priceold = $("<span></span>").addClass("price-old");
 
-        var card = $("<div></div>").addClass("col-md-3 col-sm-6");
-        var figure = $("<figure></figure>").addClass("card card-product");
-        var preimg = $("<div></div>").addClass("img-wrap");
-        var img = $("<img/>").attr('src', "" + product.img[0] + ""); 
-        var figcaption = $("<figcaption></figcaption>").addClass("info-wrap");
-        var a = $("<a></a>").addClass("title").attr("href","/categories/productpage.html?id=" + name);
-        var preprice = $("<div></div>").addClass("price-wrap");
-        var price = $("<span></span>").addClass("price-new");
-        var priceold = $("<span></span>").addClass("price-old");
+    price.append("$"+ (product.price - product.discount));
+    priceold.append("$"+ product.price);
+    preprice.append(price, priceold);
 
-        price.append("$"+ (product.price - product.discount));
-        priceold.append("$"+ product.price);
-        preprice.append(price, priceold);
+    var realprice = product.price - product.discount;
+    var oldprice = product.price;
 
-        var realprice = product.price - product.discount;
-        var oldprice = product.price;
-
-        if (realprice == oldprice){
-            priceold.remove();
-        }
-        a.append(product.name);
-        figcaption.append(a, preprice);
-        preimg.append(img);
-        figure.append(preimg,figcaption);
-        card.append(figure);
-        $("#products").append(card);
-        
+    if (realprice == oldprice){
+        priceold.remove();
     }
+    a.append(product.name);
+    figcaption.append(a, preprice);
+    preimg.append(img);
+    figure.append(preimg,figcaption);
+    card.append(figure);
+    $("#products").append(card);
+};
 
-
-
-    
-        
-        
-    
-}
 
 //CART PRODUCTS
 
