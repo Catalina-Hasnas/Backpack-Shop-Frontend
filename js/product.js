@@ -1,3 +1,5 @@
+// PRODUCT PAGE
+
 function getProduct(id) {
     db.collection('products').where('id', '==', id ).get().then((snapshot) => {
         snapshot.forEach(doc => {
@@ -20,18 +22,20 @@ function getProduct(id) {
 
                 });
 
-            // CAROUSEL - PRODUCT PAGE
+            // MODAL - PRODUCT PAGE
+
+                var finalprice = product.price - product.discount;
 
                 $("li").first().addClass("active");
                 $(".carousel-item").first().addClass("active");
 
                 $("#thumbnail").addClass("col-lg-6").attr('src', "" + product.img[0] + "");
-                var material = $("#material").addClass("text-uppercase").html("material: " + product.material);
-                var color = $("#color").addClass("text-uppercase").html("color: " + product.color);
-                var modalprice = $("#modal-price").addClass("text-uppercase").append("price: $" + product.price);
+                var material = $("#material").html("material: " + product.material);
+                var color = $("#color").html("color: " + product.color);
+                var modalprice = $("#modal-price").append("price: $" + finalprice);
                 $("#characterictics").addClass("col-lg-6").html(material + "<br>" + color + "<br>" + modalprice);
                 $("#addToBasket").data("product-id", id);
-                $("#addToBasket").data("product-price", (product.price - product.discount));
+                $("#addToBasket").data("product-price", (finalprice));
         });
     })
 }
@@ -63,10 +67,9 @@ function getProducts(category="", type="") {
     }
 }
 
-//PRODUCTS CART
+//RENDERING PRODUCTS LIST
 
 function renderProducts(product) {
-    console.log(product);
     var card = $("<div></div>").addClass("col-md-3 col-sm-6");
     var figure = $("<figure></figure>").addClass("card card-product");
     var preimg = $("<div></div>").addClass("img-wrap");
@@ -95,15 +98,14 @@ function renderProducts(product) {
     $("#products").append(card);
 };
 
-
 //CART PRODUCTS
 
 function renderCartProduct(id, quantity) {
-    $.ajax(
-        {
-        type:'GET',
-        url:'http://localhost:8000/products/' + id,
-        success: function(product){
+    
+    db.collection('products').where('id', '==', id ).get().then((snapshot) => {
+        snapshot.forEach(doc => {
+            const product = doc.data();
+
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <a href="/categories/productpage.html?id=${product.id}">
@@ -149,7 +151,7 @@ function renderCartProduct(id, quantity) {
                         </div>`;
             var tempDom = $($.parseHTML(html));
             $("#cartList").prepend(tempDom);
-        }
+        });
     });
 
     var itemsCount = 0;
@@ -163,7 +165,7 @@ function renderCartProduct(id, quantity) {
     }
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
-}   
+};   
 
 function changeHeader(){
     var itemsCount = 0;
@@ -183,7 +185,7 @@ function changeHeader(){
     }
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
-}
+};
 
 function registerCartClickEvents(){
     $('#cartList').on('click', '.plus', function() {
@@ -200,5 +202,4 @@ function registerCartClickEvents(){
         input.stepDown();
         order.addProduct(id, input.value, input.getAttribute("data-product-price"));
     });
-}
-
+};
