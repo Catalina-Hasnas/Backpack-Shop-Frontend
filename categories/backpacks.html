@@ -173,17 +173,17 @@
 							<div class="custom-control custom-checkbox  custom-control-inline">
 								
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline1" onclick="getFilteredCategory()">
-									<label class="custom-control-label" for="defaultInline1">Etno</label>
+									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline1" onclick="getFilteredType(), checkboxChange(this)">
+									<label class="custom-control-label" for="defaultInline1">Ethno</label>
 								</div>
 								
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline2" onclick="getFilteredCategory()">
+									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline2" onclick="getFilteredType(), checkboxChange(this)">
 									<label class="custom-control-label" for="defaultInline2">Elegant</label>
 								</div>
 								
 								<div class="custom-control custom-checkbox">
-									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline3" onclick="getFilteredCategory()">
+									<input type="checkbox" name="checkBox" class="custom-control-input" id="defaultInline3" onclick="getFilteredType(), checkboxChange(this)">
 									<label class="custom-control-label" for="defaultInline3">Sport</label>
 								</div>
 							</div>
@@ -278,13 +278,14 @@
 		<script src="../js/firebase.js"></script>
 		<script src="../js/product.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			window.onload = async function() {
-				const type = await getFilteredCategory();
-				getProducts("backpacks", type)
-			
+			window.onload = function() {
+				const type = getFilteredType();
+				getProducts("backpacks", type);
 			};  
+
+
 			
-			function getFilteredCategory() {
+			function getFilteredType() {
 				var etnoCheckBox = document.getElementById("defaultInline1");
 				var elegantCheckBox = document.getElementById("defaultInline2");
 				var sportCheckBox = document.getElementById("defaultInline3");
@@ -298,31 +299,25 @@
 				if (sportCheckBox.checked) {
 					backpacksType = "sport";
 				}
-				console.log(backpacksType);
 				return backpacksType;
-				
 			};
 
-			// function checkboxChange(checkbox){
-			// 	var allCheckbox = document.getElementsByName(checkbox.name);
-			// 	var eachCheckbox = document.getElementById(checkbox.id);
+			function checkboxChange(checkbox){
+				var allCheckbox = document.getElementsByName(checkbox.name);
+				var eachCheckBox = document.getElementById(checkbox.id);
 
-			// 	if (eachCheckbox.checked) {
-			// 		for(var i=0; i < allCheckbox.length; i++){
+					var checked = (checkbox.checked);
 
-			// 			if(!allCheckbox[i].checked){
-			// 				allCheckbox[i].disabled = true;
-			// 			}else{
-			// 				allCheckbox[i].disabled = false;
-			// 			}
-			// 		} 
-			// 	}
-			// 	else {
-			// 		for(var i=0; i < allCheckbox.length; i++){
-			// 			allCheckbox[i].disabled = false;
-			// 		} 
-			// 	}    
-			// }
+					for(var i=0; i < allCheckbox.length; i++){
+						allCheckbox[i].checked = false;
+					}
+
+					if (checked) {
+						checkbox.checked = true;
+					}
+
+				location.reload();    
+			}
 
 		</script>
 	</body>
