@@ -30,10 +30,9 @@ function getProduct(id) {
                 $(".carousel-item").first().addClass("active");
 
                 $("#thumbnail").addClass("col-lg-6").attr('src', "" + product.img[0] + "");
-                var material = $("#material").html("material: " + product.material);
-                var color = $("#color").html("color: " + product.color);
-                var modalprice = $("#modal-price").append("price: $" + finalprice);
-                $("#characterictics").addClass("col-lg-6").html(material + "<br>" + color + "<br>" + modalprice);
+                $("#material").html("material: " + product.material);
+                $("#color").html("color: " + product.color);
+                $("#modal-price").append("price: $" + finalprice);
                 $("#addToBasket").data("product-id", id);
                 $("#addToBasket").data("product-price", (finalprice));
         });

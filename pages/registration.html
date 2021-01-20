@@ -288,5 +288,23 @@
 		   <!-- ========================= FOOTER END ============================= -->
 		   <script src="../js/firebase.js"></script>
 		   <script src="../js/auth.js"></script>
+		   <script type="text/javascript">
+
+			const signupForm = document.getElementById('signup-form');
+			
+			signupForm.addEventListener('submit', (event) => {
+				event.preventDefault();
+
+				const email = signupForm['signup-email'].value;
+				const password = signupForm['signup-password'].value;
+				
+				auth.createUserWithEmailAndPassword(email, password).then(credentials => {
+					window.location.replace("../index.html");
+				});
+				
+			});
+		
+
+</script>
 	</body>
 </html>
