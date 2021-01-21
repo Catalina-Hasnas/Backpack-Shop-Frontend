@@ -104,7 +104,6 @@ function renderCartProduct(id, quantity) {
     db.collection('products').where('id', '==', id ).get().then((snapshot) => {
         snapshot.forEach(doc => {
             const product = doc.data();
-
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <a href="/categories/productpage.html?id=${product.id}">
@@ -154,12 +153,11 @@ function renderCartProduct(id, quantity) {
     });
 
     var itemsCount = 0;
-    order.products.forEach(product => {
+    orderProducts.forEach(product => {
         itemsCount += parseInt(product.quantity);
     });
 
     function pluralize(itemsCount, word) {
-        
         return itemsCount + " " + word + (itemsCount === 1 ? "" : "s"); 
     }
 

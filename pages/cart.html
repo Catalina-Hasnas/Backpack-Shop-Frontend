@@ -281,17 +281,9 @@
 
         <script>         
             window.onload = function() {
-                order.getOrderId();
-                order.products.forEach(function(product) {
+                orderProducts.forEach(function(product) {
                     renderCartProduct(product.productId, product.quantity);            
                 });
-
-                $('#cartList').on('click', '.deleteBtn', function() {
-                    var id = $(this).data("button-id");
-                    order.removeProduct(id);
-                });
-
-                registerCartClickEvents();
-            }
+            };
     </script>
 </html>

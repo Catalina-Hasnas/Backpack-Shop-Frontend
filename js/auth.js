@@ -1,26 +1,27 @@
 auth.onAuthStateChanged(user => {
     console.log(user);
     if (user) {
-        orderButton(user);
-        setUpUI(user);
+        setOrderButton(user);
+        setLoginButton(user);
     } else {
-        orderButton();
-        setUpUI();
+        setOrderButton();
+        setLoginButton();
     }
 });
 
-function orderButton (user) {
+setOrderButton = user => {
     let startOrder = document.getElementById('startOrder');
 
     if (startOrder) {
         let orderButton;
         let html = '';
+
         if (user) {
-            orderButton = `<a id="addToBasket" href="#" class="btn  btn-outline-primary" data-toggle="modal"
+            orderButton = `<a onclick="getOrderData()" id="addToBasket" href="#" class="btn  btn-outline-primary" data-toggle="modal"
             data-target="#exampleModalCenter"> Start Order </a>`;
             html += orderButton;
         } else {
-            orderButton = `<a id="addToBasket" href="../pages/login.html" class="btn  btn-outline-primary"> Please sign in to order </a>`;
+            orderButton = `<a href="../pages/login.html" class="btn  btn-outline-primary"> Please sign in to order </a>`;
             html += orderButton;
         }
         startOrder.insertAdjacentHTML('beforeend', html);
@@ -31,7 +32,7 @@ function orderButton (user) {
 const login = document.querySelectorAll('.login');
 const logout = document.querySelectorAll('.logout');
 
-setUpUI = user => {
+setLoginButton = user => {
     if (user) {
         logout.forEach(item => item.style.display = 'block');
         login.forEach(item => item.style.display = 'none');
@@ -50,7 +51,6 @@ logout.forEach(item => {
     })
 });
 
-
 document.querySelectorAll('.login-form').forEach(item => {
     item.addEventListener('click', event => {
         event.preventDefault();
@@ -61,4 +61,5 @@ document.querySelectorAll('.login-form').forEach(item => {
         });
     });
 });
+
 
