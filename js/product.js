@@ -99,11 +99,18 @@ function renderProducts(product) {
 
 //CART PRODUCTS
 
+function substract(x,y) {
+    return x-y;
+
+}
+
 function renderCartProduct(id, quantity) {
     
     db.collection('products').where('id', '==', id ).get().then((snapshot) => {
         snapshot.forEach(doc => {
             const product = doc.data();
+            const fixedPrice = substract(product.price, product.discount);
+            console.log(fixedPrice);
             var html = `<div class="row mb-4">
                             <div class="col-md-5 col-lg-3 col-xl-3">
                                 <a href="/categories/productpage.html?id=${product.id}">
@@ -121,13 +128,13 @@ function renderCartProduct(id, quantity) {
                                             <h5 class= "pt-2 pb-2">${product.name}</h5>
                                             <p class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
                                             <p class="mb-3 text-muted text-uppercase small">Color: ${product.color}</p>
-                                            <p class=" font-weight-bold text-muted text-uppercase small">Price: $${product.price-product.discount}</p>
+                                            <p class=" font-weight-bold text-muted text-uppercase small">Price: $${fixedPrice}</p>
                                         </div>
                                         <div>
                                             <div class="pt-3 mb-0 w-100">
                                                 <button
                                                     class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
-                                                <input class="quantity" min="1" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${product.price - product.discount}">
+                                                <input class="quantity" min="1" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${fixedPrice}">
                                                 <button
                                                     class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
                                             </div>
@@ -149,10 +156,16 @@ function renderCartProduct(id, quantity) {
                         </div>`;
             var tempDom = $($.parseHTML(html));
             $("#cartList").prepend(tempDom);
+
         });
     });
 
+    changeHeader();
+};   
+
+function changeHeader(){
     var itemsCount = 0;
+
     orderProducts.forEach(product => {
         itemsCount += parseInt(product.quantity);
     });
@@ -162,41 +175,27 @@ function renderCartProduct(id, quantity) {
     }
 
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
-};   
-
-function changeHeader(){
-    var itemsCount = 0;
-
-    order.products.forEach(product => {
-        itemsCount += parseInt(product.quantity);
-    });
-
-
-    var pluralize = function(itemsCount, word) {
-        
-        if (itemsCount === 1) {
-            return itemsCount + " " + word;
-        } else {
-            return itemsCount + " " + word + "s";
-        }
-    }
-
-    document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
 };
 
 function registerCartClickEvents(){
     $('#cartList').on('click', '.plus', function() {
         var id = $(this).data("button-id");
         var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
-        input.stepUp();
-        order.addProduct(id, input.value, input.getAttribute("data-product-price"));
+        input.stepUp(1);
+        var productPrice = input.getAttribute("data-product-price");
+        var totalPrice = productPrice * input.value;
+        updateProduct(id, input.value, totalPrice);
+        changeHeader();
     });
-    
     
     $('#cartList').on('click', '.minus', function() {
         var id = $(this).data("button-id");
         var input = document.querySelector(`.quantity[data-input-id="${id}"]`);
-        input.stepDown();
-        order.addProduct(id, input.value, input.getAttribute("data-product-price"));
+        input.stepDown(1);
+        var productPrice = input.getAttribute("data-product-price");
+        var totalPrice = productPrice * input.value;
+        updateProduct(id, input.value, totalPrice);
+        changeHeader();
     });
+    
 };

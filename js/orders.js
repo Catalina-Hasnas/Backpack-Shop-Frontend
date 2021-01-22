@@ -4,7 +4,7 @@ var newArray = JSON.parse(existingInfo);
 
 if (existingInfo) {
     orderProducts = newArray;
-}
+};
 
 function addProduct(productId, qty, price){
     const product = {
@@ -14,22 +14,33 @@ function addProduct(productId, qty, price){
     };
 
     orderProducts.push(product); 
-    getUserUid(orderProducts);
     localStorage.setItem('orderProducts', JSON.stringify(orderProducts));
-    console.log(localStorage);
+
+    setProducts();
 };
 
-function getUserUid(orderProducts) {
-    var user = firebase.auth().currentUser;
-    var uid = user.uid;
+async function setProducts() {
+    console.log(orderProducts);
+    var uid = await getUserUid();
     db.collection('users').doc(uid).set({
         orderProducts
     });
 };       
 
-//     updateProduct: function() {
-
-//     },
+function updateProduct(currentProductId, currentQuantity, currentPrice) {
+    if (orderProducts.length == 1) {
+        orderProducts[0].quantity = currentQuantity;
+        orderProducts[0].price = currentPrice;
+    } else {
+        index = orderProducts.findIndex(obj => obj.productId == currentProductId);
+        orderProducts[index].quantity = currentQuantity;
+        orderProducts[index].price = currentPrice;
+    }
+    
+    localStorage.setItem('orderProducts', JSON.stringify(orderProducts));
+    
+    setProducts();
+};
 
 //     removeProduct: function(productId){
 //         const product = {

@@ -1,5 +1,4 @@
 auth.onAuthStateChanged(user => {
-    console.log(user);
     if (user) {
         setOrderButton(user);
         setLoginButton(user);
@@ -8,6 +7,12 @@ auth.onAuthStateChanged(user => {
         setLoginButton();
     }
 });
+
+getUserUid = async () => {
+    var uid = await firebase.auth().currentUser.uid;
+    return uid;
+};
+
 
 setOrderButton = user => {
     let startOrder = document.getElementById('startOrder');
@@ -27,7 +32,7 @@ setOrderButton = user => {
         startOrder.insertAdjacentHTML('beforeend', html);
     }
     
-}
+};
 
 const login = document.querySelectorAll('.login');
 const logout = document.querySelectorAll('.logout');
@@ -40,7 +45,7 @@ setLoginButton = user => {
         logout.forEach(item => item.style.display = 'none');
         login.forEach(item => item.style.display = 'block');
     }
-}
+};
 
 logout.forEach(item => {
     item.addEventListener('click', event => {

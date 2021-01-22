@@ -154,7 +154,7 @@
 
         <!-- ========================= SECTION CONTENT ======================== -->
         <div class="top-box">
-            <div class="container">
+            <div id="authChecker" class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-12">
                         <div class="mb-3">
@@ -279,11 +279,38 @@
         <script src="../js/product.js" type="text/javascript"></script>
         <script src="../js/orders.js" type="text/javascript"></script>
 
-        <script>         
-            window.onload = function() {
-                orderProducts.forEach(function(product) {
-                    renderCartProduct(product.productId, product.quantity);            
+        <script>     
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    console.log(user)
+                    var uid = user.uid;
+                    getCartProducts(uid);
+                    registerCartClickEvents();
+                }
+                else {
+                    var authChecker = $("#authChecker").addClass("d-flex align-items-start justify-content-center");
+                    var message = $("<h2></h2>").addClass("py-5").html('Please sign in to view items in your cart.');
+        
+                    authChecker.html(message);
+                }
+            });  
+
+            function getCartProducts (uid) {
+                var usersProducts = db.collection("users").doc(uid);
+                usersProducts.get().then( function(doc) {
+                    if (doc.exists) {
+                        console.log("Document data:", doc.data());
+                        var products = doc.data().orderProducts;
+                        products.forEach(function(product) {
+                            renderCartProduct(product.productId, product.quantity);  
+                        });          
+                    } else {
+                        console.log("No such document!");
+                    }
+                }).catch(function(error) {
+                    console.log("Error getting document:", error);
                 });
+        
             };
     </script>
 </html>
