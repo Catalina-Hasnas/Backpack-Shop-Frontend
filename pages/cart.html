@@ -288,15 +288,14 @@
                     registerCartClickEvents();
                 }
                 else {
-                    var authChecker = $("#authChecker").addClass("d-flex align-items-start justify-content-center");
-                    var message = $("<h2></h2>").addClass("py-5").html('Please sign in to view items in your cart.');
-        
-                    authChecker.html(message);
+                    getCartProducts();
                 }
             });  
 
             function getCartProducts (uid) {
-                var usersProducts = db.collection("users").doc(uid);
+                if (uid) {
+
+                    var usersProducts = db.collection("users").doc(uid);
                 usersProducts.get().then( function(doc) {
                     if (doc.exists) {
                         console.log("Document data:", doc.data());
@@ -310,6 +309,11 @@
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
+
+                } else {
+                    renderCartProduct();
+                }
+                
         
             };
     </script>

@@ -105,62 +105,70 @@ function substract(x,y) {
 }
 
 function renderCartProduct(id, quantity) {
-    
-    db.collection('products').where('id', '==', id ).get().then((snapshot) => {
-        snapshot.forEach(doc => {
-            const product = doc.data();
-            const fixedPrice = substract(product.price, product.discount);
-            console.log(fixedPrice);
-            var html = `<div class="row mb-4">
-                            <div class="col-md-5 col-lg-3 col-xl-3">
-                                <a href="/categories/productpage.html?id=${product.id}">
-                                    <div class="mask">
-                                        <img id="photo" class="img-fluid w-100"
-                                            src="${product.img[0]}">
-                                        <div class="mask rgba-black-slight"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-7 col-lg-9 col-xl-9 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div id="info">
-                                            <h5 class= "pt-2 pb-2">${product.name}</h5>
-                                            <p class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
-                                            <p class="mb-3 text-muted text-uppercase small">Color: ${product.color}</p>
-                                            <p class=" font-weight-bold text-muted text-uppercase small">Price: $${fixedPrice}</p>
+
+    if (id, quantity) {
+        db.collection('products').where('id', '==', id ).get().then((snapshot) => {
+            snapshot.forEach(doc => {
+                const product = doc.data();
+                const fixedPrice = substract(product.price, product.discount);
+                console.log(fixedPrice);
+                var html = `<div class="row mb-4">
+                                <div class="col-md-5 col-lg-3 col-xl-3">
+                                    <a href="/categories/productpage.html?id=${product.id}">
+                                        <div class="mask">
+                                            <img id="photo" class="img-fluid w-100"
+                                                src="${product.img[0]}">
+                                            <div class="mask rgba-black-slight"></div>
                                         </div>
-                                        <div>
-                                            <div class="pt-3 mb-0 w-100">
-                                                <button
-                                                    class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
-                                                <input class="quantity" min="1" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${fixedPrice}">
-                                                <button
-                                                    class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
+                                    </a>
+                                </div>
+                                <div class="col-md-7 col-lg-9 col-xl-9 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <div class="d-flex justify-content-between flex-wrap">
+                                            <div id="info">
+                                                <h5 class= "pt-2 pb-2">${product.name}</h5>
+                                                <p class="mb-3 text-muted text-uppercase small">Material: ${product.material}</p>
+                                                <p class="mb-3 text-muted text-uppercase small">Color: ${product.color}</p>
+                                                <p class=" font-weight-bold text-muted text-uppercase small">Price: $${fixedPrice}</p>
+                                            </div>
+                                            <div>
+                                                <div class="pt-3 mb-0 w-100">
+                                                    <button
+                                                        class="btn-edit btn-primary minus" data-button-id="${product.id}"> - </button>
+                                                    <input class="quantity" min="1" name="quantity" value="${quantity}" type="number" data-input-id="${product.id}" data-product-price="${fixedPrice}">
+                                                    <button
+                                                        class="btn-edit btn-primary plus" data-button-id="${product.id}"> + </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="pt-3 d-flex justify-content-between">
-                                        <div>
-                                            <button 
-                                                class="deleteBtn btn-edit btn-primary card-link-secondary small text-uppercase mr-3" data-button-id="${product.id}"><i
-                                                    class="fas fa-trash-alt mr-1"></i> Remove item 
-                                            </button>
+                                    <div>
+                                        <div class="pt-3 d-flex justify-content-between">
+                                            <div>
+                                                <button 
+                                                    class="deleteBtn btn-edit btn-primary card-link-secondary small text-uppercase mr-3" data-button-id="${product.id}"><i
+                                                        class="fas fa-trash-alt mr-1"></i> Remove item 
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
-                                
-                            </div>
-                        </div>`;
-            var tempDom = $($.parseHTML(html));
-            $("#cartList").prepend(tempDom);
-
+                            </div>`;
+                var tempDom = $($.parseHTML(html));
+                $("#cartList").prepend(tempDom);
+    
+            });
         });
-    });
 
-    changeHeader();
+        changeHeader();
+
+    } else {
+        var authChecker = $("#authChecker").addClass("d-flex align-items-start justify-content-center");
+        var message = $("<h2></h2>").addClass("py-5").html('Please sign in to view items in your cart.');
+        
+        authChecker.html(message);
+    }
 };   
 
 function changeHeader(){

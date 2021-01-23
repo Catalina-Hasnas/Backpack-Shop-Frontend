@@ -31,7 +31,6 @@ setOrderButton = user => {
         }
         startOrder.insertAdjacentHTML('beforeend', html);
     }
-    
 };
 
 const login = document.querySelectorAll('.login');
@@ -57,13 +56,17 @@ logout.forEach(item => {
 });
 
 document.querySelectorAll('.login-form').forEach(item => {
-    item.addEventListener('click', event => {
+    item.addEventListener('click', async event => {
         event.preventDefault();
         const email = item['signIn-email'].value;
         const password = item['signIn-password'].value;
-        auth.signInWithEmailAndPassword(email, password).then(credentials => {
-            console.log(credentials.user)
-        });
+        await auth.signInWithEmailAndPassword(email, password);
+        if (window.location.pathname == "/pages/login.html") {
+        window.location.replace("../index.html");
+        } else {
+            window.location.reload(); 
+        }
+        
     });
 });
 
