@@ -29,7 +29,7 @@ setOrderButton = user => {
             orderButton = `<a href="../pages/login.html" class="btn  btn-outline-primary"> Please sign in to order </a>`;
             html += orderButton;
         }
-        startOrder.insertAdjacentHTML('beforeend', html);
+        startOrder.innerHTML = orderButton;
     }
 };
 
@@ -62,11 +62,10 @@ document.querySelectorAll('.login-form').forEach(item => {
         const password = item['signIn-password'].value;
         await auth.signInWithEmailAndPassword(email, password);
         if (window.location.pathname == "/pages/login.html") {
-        window.location.replace("../index.html");
+        window.history.back()
         } else {
             window.location.reload(); 
         }
-        
     });
 });
 

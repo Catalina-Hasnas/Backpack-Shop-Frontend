@@ -298,8 +298,8 @@
 				const email = signupForm['signup-email'].value;
 				const password = signupForm['signup-password'].value;
 				
-				auth.createUserWithEmailAndPassword(email, password).then(credentials => {
-					window.location.replace("../index.html");
+				auth.createUserWithEmailAndPassword(email, password).then( () => {
+					window.history.back();
 				});
 				
 			});
