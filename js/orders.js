@@ -17,22 +17,14 @@ function addProduct(productId, qty, price){
     localStorage.setItem('orderProducts', JSON.stringify(orderProducts));
 
     setProducts();
-};
-
-async function setProducts() {
-    console.log(orderProducts);
-    var uid = await getUserUid();
-    db.collection('users').doc(uid).set({
-        orderProducts
-    });
-};       
+};      
 
 function updateProduct(currentProductId, currentQuantity, currentPrice) {
     if (orderProducts.length == 1) {
         orderProducts[0].quantity = currentQuantity;
         orderProducts[0].price = currentPrice;
     } else {
-        index = orderProducts.findIndex(obj => obj.productId == currentProductId);
+        var index = orderProducts.findIndex(obj => obj.productId == currentProductId);
         orderProducts[index].quantity = currentQuantity;
         orderProducts[index].price = currentPrice;
     }
@@ -42,31 +34,29 @@ function updateProduct(currentProductId, currentQuantity, currentPrice) {
     setProducts();
 };
 
-//     removeProduct: function(productId){
-//         const product = {
-//             "orderId": this.currentOrderId,
-//             "productId": productId,
-//         };
+async function removeProduct(deletedProductId){
     
-//         $.ajax({
-//             type: "POST",
-//             url: "http://localhost:8000/orders/removeProduct",
-//             data: JSON.stringify(product),
-//             contentType: "application/json; charset=utf-8",
-//             dataType: "json",
-//             success: function(data){
-//                 saveProducts(data.products);
-//                 $("#cartList").html("");
-//                 data.products.forEach(function(product) {
-//                     renderCartProduct(product.productId, product.quantity);            
-//                 });
-//             },
-//             failure: function(errMsg) {
-//                 console.log(errMsg);
-//             }
-//         });  
-//     }    
-// };
+    if (orderProducts.length == 1) {
+        orderProducts.splice(0, 1);
+    } else {
+        var index = orderProducts.findIndex(obj => obj.productId == deletedProductId);
+        orderProducts.splice(index, 1);
+    }
+    
+    localStorage.setItem('orderProducts', JSON.stringify(orderProducts));
+
+    await setProducts();
+
+    window.location.reload();
+}; 
+
+async function setProducts() {
+    console.log(orderProducts);
+    var uid = await getUserUid();
+    return db.collection('users').doc(uid).set({
+        orderProducts
+    });
+}; 
 
 // function changeTotal() {
 

@@ -99,19 +99,14 @@ function renderProducts(product) {
 
 //CART PRODUCTS
 
-function substract(x,y) {
-    return x-y;
-
-}
-
 function renderCartProduct(id, quantity) {
 
     if (id, quantity) {
         db.collection('products').where('id', '==', id ).get().then((snapshot) => {
             snapshot.forEach(doc => {
                 const product = doc.data();
-                const fixedPrice = substract(product.price, product.discount);
-                console.log(fixedPrice);
+                
+                const fixedPrice = product.price - product.discount;
                 var html = `<div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
                                     <a href="/categories/productpage.html?id=${product.id}">
@@ -145,7 +140,7 @@ function renderCartProduct(id, quantity) {
                                     <div>
                                         <div class="pt-3 d-flex justify-content-between">
                                             <div>
-                                                <button 
+                                                <button
                                                     class="deleteBtn btn-edit btn-primary card-link-secondary small text-uppercase mr-3" data-button-id="${product.id}"><i
                                                         class="fas fa-trash-alt mr-1"></i> Remove item 
                                                 </button>
@@ -157,7 +152,6 @@ function renderCartProduct(id, quantity) {
                             </div>`;
                 var tempDom = $($.parseHTML(html));
                 $("#cartList").prepend(tempDom);
-    
             });
         });
 
@@ -205,5 +199,10 @@ function registerCartClickEvents(){
         updateProduct(id, input.value, totalPrice);
         changeHeader();
     });
-    
+
+    $('#cartList').on('click', '.deleteBtn', async function() {
+        var id = $(this).data("button-id");
+        removeProduct(id);
+        changeHeader();
+    });
 };
