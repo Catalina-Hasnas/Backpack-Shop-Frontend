@@ -179,18 +179,11 @@
                         <div class="mb-3 pt-4">
                             <h5 class="mb-3">The total amount of:</h5>
 
-                            <div class="pt-2 d-flex flex-column">
-                                
-                                <div id="preaside" class="pt-2 d-flex flex-column"></div>
-
-                                <div class="pt-2 d-flex flex-row justify-content-between">
-                                    <span>Shipping:</span>
-                                    <span>Free</span>
-                                </div>
+                                <div id="preaside"></div>
 
                                 <div class="pt-2 pb-2 d-flex flex-row justify-content-between">
                                     <span><strong>To pay:</strong></span>
-                                    <span class="font-weight-bold" id="total-price">$120.00</span>
+                                    <span class="font-weight-bold" id="total-price"></span>
                                 </div>
 
                                 <button type="button" class="btn-edit btn-primary btn-block">go to checkout</button>
@@ -273,48 +266,46 @@
         </footer>
         <!-- ========================= FOOTER END ============================= -->
     </body>
-        <script src="../js/firebase.js"></script>
-        <script src="../js/auth.js"> </script>
-        
-        <script src="../js/product.js" type="text/javascript"></script>
-        <script src="../js/orders.js" type="text/javascript"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/auth.js"> </script>
+    
+    <script src="../js/product.js" type="text/javascript"></script>
+    <script src="../js/orders.js" type="text/javascript"></script>
 
-        <script>     
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    console.log(user)
-                    var uid = user.uid;
-                    getCartProducts(uid);
-                    registerCartClickEvents();
-                }
-                else {
-                    getCartProducts();
-                }
-            });  
+    <script>     
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                console.log(orderProducts);
+                var uid = user.uid;
+                getCartProducts(uid);
+                registerCartClickEvents();
+            }
+            else {
+                getCartProducts();
+            }
+        });  
 
-            function getCartProducts (uid) {
-                if (uid) {
-
-                    var usersProducts = db.collection("users").doc(uid);
+        function getCartProducts (uid) {
+            if (uid) {
+                var usersProducts = db.collection("users").doc(uid);
                 usersProducts.get().then( function(doc) {
                     if (doc.exists) {
                         console.log("Document data:", doc.data());
                         var products = doc.data().orderProducts;
                         products.forEach(function(product) {
                             renderCartProduct(product.productId, product.quantity);  
-                        });          
+                        });  
+                        changeTotal();        
                     } else {
                         console.log("No such document!");
                     }
                 }).catch(function(error) {
                     console.log("Error getting document:", error);
                 });
-
-                } else {
-                    renderCartProduct();
-                }
-                
+            } else {
+                renderCartProduct();
+            }
+        };
         
-            };
     </script>
 </html>

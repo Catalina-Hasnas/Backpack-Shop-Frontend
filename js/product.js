@@ -35,6 +35,7 @@ function getProduct(id) {
                 $("#modal-price").append("price: $" + finalprice);
                 $("#addToBasket").data("product-id", id);
                 $("#addToBasket").data("product-price", (finalprice));
+                $("#addToBasket").data("product-name", product.name);
         });
     })
 }
@@ -179,6 +180,33 @@ function changeHeader(){
     document.getElementById("span").innerHTML = pluralize(itemsCount, "item"); 
 };
 
+function changeTotal() {
+
+    $("#preaside").html("");
+
+    orderProducts.forEach(product => {
+        var productName = $("<span></span>").addClass("flex-grow-1");
+        var productPrice = $("<span><span>").addClass("flex-grow-1");
+        var productQuantity = $("<span><span>").addClass("flex-grow-1");
+        var productsPrice = $("<span><span>");
+        var aside = $("<div></div>").addClass("pt-2 d-flex flex-row justify-content-between align-items-start");
+
+        productName.append(product.name);
+        productPrice.append((product.price / product.quantity) + " x " + product.quantity);
+        productQuantity.append(product.quantity);
+        productsPrice.append(product.price);
+        aside.append(productName, productPrice, productsPrice);
+
+        $("#preaside").append(aside);
+    });
+
+    var priceOfAll = orderProducts.reduce(function(prev, current) {
+        return prev + current.price;
+    }, 0);
+
+    $("#total-price").html(priceOfAll);    
+};
+
 function registerCartClickEvents(){
     $('#cartList').on('click', '.plus', function() {
         var id = $(this).data("button-id");
@@ -188,6 +216,7 @@ function registerCartClickEvents(){
         var totalPrice = productPrice * input.value;
         updateProduct(id, input.value, totalPrice);
         changeHeader();
+        changeTotal();
     });
     
     $('#cartList').on('click', '.minus', function() {
@@ -198,11 +227,13 @@ function registerCartClickEvents(){
         var totalPrice = productPrice * input.value;
         updateProduct(id, input.value, totalPrice);
         changeHeader();
+        changeTotal();
     });
 
     $('#cartList').on('click', '.deleteBtn', async function() {
         var id = $(this).data("button-id");
         removeProduct(id);
         changeHeader();
+        changeTotal();
     });
 };

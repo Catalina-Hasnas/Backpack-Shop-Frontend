@@ -331,7 +331,8 @@
 	getOrderData = () => {
 		const productId = $("#addToBasket").data("product-id");
 		const productPrice = $("#addToBasket").data("product-price");
-		addProduct(productId, "1", productPrice);
+		const productName = $("#addToBasket").data("product-name");
+		addProduct(productId, "1", productPrice, productName);
 	};
 
 	
