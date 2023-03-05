@@ -22,5 +22,6 @@ This server requires mongodb credentials to add in the database.service.ts.
 
 ## Technologies on frontend
 * jQuery
+* Bootsrap
 
 
